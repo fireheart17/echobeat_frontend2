@@ -9,8 +9,9 @@ const MainCard = ({ title, items }) => {
       <div className="sub-cards-container">
         {items.map((song) => (
         //   <div key={song.id} className="sub-card">
-            <a key={song.id} href={`/songs/${song.id}`} className="song-link sub-card">
-              <b>{`Song name: ${song.track_name}`}</b>
+            <a key={song.track_id} href={`/songs/${song.track_id}`} className="song-link sub-card">
+              <b>{song.track_name}</b>
+              <div style={{'fontSize':'0.8rem'}}>{song.genre}</div>
             </a>
         //   </div>
         ))}
