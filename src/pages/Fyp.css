@@ -100,7 +100,7 @@ body.menu-open {
     color: var(--color-200);
     max-width: 31.25rem;
     /* 500px -> 31.25rem */
-    margin-left: 1.25rem;
+    margin-left: 50px;
     /* 20px -> 1.25rem */
     margin-bottom: 1.25rem;
     /* 20px -> 1.25rem */

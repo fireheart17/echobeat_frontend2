@@ -2,10 +2,11 @@
 import React from 'react';
 import '../pages/Fyp.css'; // Import CSS specific to this component
 
-const HeroSection = () => {
+const HeroSection = (props) => {
   return (
-    <div className="hero-section card">
+    <div className="hero-section">
       <div className="hero-text" id="hero-text">
+        Sup {props.name}!
         {/* Discover, Inspire, Connect: Your Blog for Everything Worth Sharing. */}
       </div>
       <div className="buttons">

@@ -4,7 +4,6 @@ import './Navbar.css'; // Import the CSS file for styling
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   // Function to toggle menu open state
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,42 +14,13 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-  // Close the menu if clicking outside or pressing escape
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (
-        e.target.closest('.sliding-menu') === null &&
-        e.target.closest('.hamburger-menu-sm') === null
-      ) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    // Disable scrolling when menu is open
-    document.body.classList.toggle('menu-open', isMenuOpen);
-
-    // Add event listener when menu is open
-    if (isMenuOpen) {
-      window.addEventListener('click', handleOutsideClick);
-    }
-
-    // Cleanup function to remove listener when component unmounts or menu closes
-    return () => {
-      window.removeEventListener('click', handleOutsideClick);
-      document.body.classList.remove('menu-open');
-    };
-  }, [isMenuOpen]);
-
   return (
     <>
       <div className="navbar">
         <a className="logo" href="/fyp">
           <b>EchoBeat</b>
         </a>
-        <button className="hamburger-menu-sm blocky" id="hamburgerMenu" onClick={toggleMenu}>
-          &#9776;
-        </button>
-        <div className="navlinks" style={{ display: isMenuOpen ? 'flex' : '' }}>
+        <div className="navlinks">
           <a className="link" href="blogs.html">
             Blogs
           </a>
@@ -64,6 +34,9 @@ const Navbar = () => {
             Login
           </a>
         </div>
+          <button className="hamburger-menu blocky" id="hamburgerMenu" onClick={toggleMenu}>
+          &#9776;
+        </button>
       </div>
 
       <div className={`sliding-menu ${isMenuOpen ? 'open' : ''}`} id="slidingMenu">
