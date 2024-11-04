@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Artist from "./pages/Artist";
 import Fyp from "./pages/Fyp";
 import Playlist from "./pages/Playlist";
 import Charts from "./pages/Charts"
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
   {
     path: "/likedsongs/userId/:userId",
     element: <Likedsongs />,
+  },
+  {
+    path: "/artist/:artistId",
+    element: <Artist />,
   },
   {
     path: "/user/:id",

@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--color-50);
+    color: var(--color-400);
+    margin: 0;
+    padding: 0;
+}
+
+
+.profile-section {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.profile-container {
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid #282828;
+    padding-bottom: 30px;
+}
+
+.profile-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--color-500);
+}
+
+.profile-details {
+    text-align: left;
+}
+
+.profile-details h2 {
+    font-size: 32px;
+}
+
+.followers {
+    margin: 10px 0;
+    color: var(--color-300);
+}
+
+.global-rank {
+    margin: 10px 0;
+    color: var(--color-300);
+}
+
+.country {
+    margin: 10px 0;
+    color: var(--color-300);
+}
+
+.song-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.album-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.follow-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--color-500);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.follow-btn:hover {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--color-300);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.profile-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.profile-nav ul li a {
+    text-decoration: none;
+    color: var(--color-300);
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.profile-nav ul li a.active {
+    color: var(--color-400);
+    border-bottom: 2px solid var(--color-500);
+}
+
+.about-section {
+    margin: 40px auto;
+    width: 80%;
+    text-align: left;
+}
+
+.about-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--color-400);
+    border-bottom: 1px solid #282828;
+    padding-bottom: 10px;
+}
+
+.about-container {
+    color: var(--color-300);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #282828;
+    color: var(--color-400);
+}
+
+
+
+
+/* Song List Styles */
+.song-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.song {
+    background-color: var(--color-400);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color-100);
+    transition: background-color 0.3s ease;
+}
+
+.nlink{
+    text-decoration: none;
+    color: var(--color-100);
+
+}
+
+.song:hover {
+    background-color: var(--color-100);
+    color: var(--color-400);
+}
+
+.song:hover .nlink{
+    color: var(--color-400);
+}
+
+.album {
+    background-color: var(--color-400);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color-100);
+    transition: background-color 0.3s ease;
+}
+
+
+.album:hover {
+    background-color: var(--color-100);
+    color: var(--color-400);
+}
+
+.album:hover .nlink{
+    color: var(--color-400);
+}
+
+
+/* Player Page Styles */
+.player-container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+audio {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.player-controls {
+    background-color: #282828;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.hidden {
+    display: none;
+}
+
+.song,
+.album {
+    margin: 10px 0;
+}
+
+.song-title,
+.album-title {
+    font-weight: bold;
+}
+
+.active {
+    color: green;
+    /* Active link color */
+}
+
+/* .nlink { */
+    /* text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center; */
+/* } */
+
+/* .nlink:hover {
+    color: var(--color-400);
+} */
+
+
+

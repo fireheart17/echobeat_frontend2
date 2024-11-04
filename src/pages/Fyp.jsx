@@ -81,3 +81,10 @@ const App = () => {
 };
 
 export default App;
+
+
+// player
+// search bar implement (songs , playlist, podcast, artist)
+// user profile changes
+// for artist add upload functionality
+// normalize tables
