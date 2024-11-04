@@ -49,11 +49,11 @@ const Chart = () => {
     <div>
       <Navbar /> {/* Assuming Navbar is a separate React component */}
       <div className="song-list-container">
-        <h1>{chart?.chart_type}</h1>
+        <h1 className='h1-charts'>{chart?.chart_type}</h1>
 
-        <ul>
+        <ul className='ul-charts'>
           {chartSongs.map((song, index) => (
-            <li key={index} onClick={() => window.location.href = `player.html?songId=${song.id}`}>
+            <li className='li-charts' key={index} onClick={() => window.location.href = `player.html?songId=${song.id}`}>
               {song.track_name}
             </li>
           ))}
