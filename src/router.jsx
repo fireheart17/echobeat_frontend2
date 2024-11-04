@@ -7,6 +7,7 @@ import Chart from "./pages/Chart"
 import Logout from "./pages/Logout";
 import Likedsongs from "./pages/Likedsongs";
 import Test from "./pages/Test";
+import Likedplaylists from "./pages/Likedplaylists";
 
 export const router = createBrowserRouter([
   {
@@ -44,5 +45,9 @@ export const router = createBrowserRouter([
   {
     path: "/test/:userId",
     element: <Test />,
+  },
+  {
+    path: "/likedplaylists/userId/:userId",
+    element: <Likedplaylists />,
   },
 ]);
