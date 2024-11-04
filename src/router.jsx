@@ -6,6 +6,9 @@ import Charts from "./pages/Charts"
 import Chart from "./pages/Chart"
 import Logout from "./pages/Logout";
 import Likedsongs from "./pages/Likedsongs";
+import User from "./pages/User";
+import Player from "./pages/Player";
+import SpotifyAuth from "./pages/SpotifyLogin";
 import Test from "./pages/Test";
 
 export const router = createBrowserRouter([
@@ -37,12 +40,16 @@ export const router = createBrowserRouter([
     path: "/artist/:artistId",
     element: <Artist />,
   },
-  // {
-  //   path: "/user/:userId",
-  //   element: <User />,
-  // },
   {
-    path: "/test/:userId",
-    element: <Test />,
+    path: "/user/:id",
+    element: <User />,
   },
+  // {
+  //   path: "/spotify_auth",
+  //   element: <SpotifyAuth />,
+  // },
+  // {
+  //   path: "/player/:id",
+  //   element: <Player />,
+  // },
 ]);
