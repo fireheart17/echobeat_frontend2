@@ -1,6 +1,7 @@
 // components/Navbar.js
 import React, { useState, useEffect } from 'react';
 import './Navbar.css'; // Import the CSS file for styling
+import SearchBar from './SearchBar';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,7 +44,7 @@ const Navbar = () => {
         <div className="close-btn" id="closeBtn" onClick={closeMenu}>
           &times;
         </div>
-        <input type="text" className="search-bar" placeholder="Search..." />
+        <SearchBar />
         <div className="menu-cards">
           <a href="/" className="menu-card">Menu Card 1</a>
           <a href="/" className="menu-card">Menu Card 2</a>
