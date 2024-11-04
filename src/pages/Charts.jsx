@@ -37,7 +37,7 @@ const Charts = () => {
       <Navbar /> {/* Assuming Navbar is a separate React component */}
 
       <div className="charts-container">
-        <h1>Top Charts</h1>
+        <h1 className='h1-charts'>Top Charts</h1>
         {charts.map((chart) => (
           <div
             key={chart.chart_id}
