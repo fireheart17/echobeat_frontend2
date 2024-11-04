@@ -3,26 +3,26 @@ import { useParams } from 'react-router-dom';
 import './PiyushChartstyles.css';
 import "./Likedsongs.css";
 
-const LikedSongsPage = () => {
+const LikedPodcastsPage = () => {
     const { userId } = useParams();  // Access userId from URL
-    const [likedSongs, setLikedSongs] = useState([]);
+    const [likedPodcasts, setLikedPodcasts] = useState([]);
 
     useEffect(() => {
-        const fetchLikedSongs = async () => {
+        const fetchLikedPodcasts = async () => {
             try {
-                const response = await fetch(`http://localhost:8081/api/likedSongs/userId/${userId}`);
+                const response = await fetch(`http://localhost:8081/api/likedPodcasts/userId/${userId}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                setLikedSongs(data);
+                setLikedPodcasts(data);
             } catch (error) {
-                console.error('Error fetching liked songs:', error);
+                console.error('Error fetching liked podcasts:', error);
             }
         };
 
         if (userId) {
-            fetchLikedSongs();
+            fetchLikedPodcasts();
         }
     }, [userId]);  // Re-fetch if userId changes
 
@@ -30,15 +30,15 @@ const LikedSongsPage = () => {
         <div>
             {/* <Navbar /> */}
             <div className="play-container">
-                <h1>Liked Songs</h1>
+                <h1>Liked Podcasts</h1>
                 <div className="song-list-container">
                     <ul>
-                        {likedSongs.map((song, index) => (
+                        {likedPodcasts.map((podcast, index) => (
                             <li
                                 key={index}
-                                onClick={() => window.location.href = `player.html?songId=${song.track_id}`}
+                                onClick={() => window.location.href = `player.html?songId=${podcast.podcast_id}`}
                             >
-                                <div>{song.track_name}</div>
+                                <div>{podcast.podcast_name}</div>
                             </li>
                         ))}
                     </ul>
@@ -48,4 +48,4 @@ const LikedSongsPage = () => {
     );
 };
 
-export default LikedSongsPage;
+export default LikedPodcastsPage;
