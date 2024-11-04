@@ -6,7 +6,7 @@ import Charts from "./pages/Charts"
 import Chart from "./pages/Chart"
 import Logout from "./pages/Logout";
 import Likedsongs from "./pages/Likedsongs";
-import User from "./pages/User";
+import Test from "./pages/Test";
 
 export const router = createBrowserRouter([
   {
@@ -37,8 +37,12 @@ export const router = createBrowserRouter([
     path: "/artist/:artistId",
     element: <Artist />,
   },
+  // {
+  //   path: "/user/:userId",
+  //   element: <User />,
+  // },
   {
-    path: "/user/:id",
-    element: <User />,
+    path: "/test/:userId",
+    element: <Test />,
   },
 ]);
