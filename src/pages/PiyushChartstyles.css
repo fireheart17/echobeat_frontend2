@@ -1,0 +1,236 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: whitesmoke; /* Spotify Dark Theme */
+    color: white;
+    margin: 0;
+    padding: 0;
+    
+}
+:root{
+    font-family: Quantico;
+    --color-100:blanchedalmond;
+    --color-200:rgb(175, 154, 122);
+    --color-300:rgb(114, 96, 70);
+    --color-400:rgb(71, 61, 46);
+    --color-500:rgb(166, 110, 56);
+}
+/* h1 {
+    color: #1DB954; 
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2 {
+    color: #FFFFFF;
+}
+
+p {
+    color: #B3B3B3;
+} */
+h1 {
+    color: rgb(71, 61, 46); /* Spotify Green */
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2 {
+    color: rgb(175, 154, 122);
+}
+
+p {
+    color: #B3B3B3;
+}
+
+/* Charts Page (cards) */
+.charts-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 50px;
+    text-align: center;
+}
+
+/* .card {
+    background-color: #282828;
+    margin: 20px auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+} */
+.card {
+    background-color: var(--color-400);
+    margin: 20px auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* .card:hover {
+    background-color: #1DB954;
+} */
+.card:hover {
+
+    background-color: var(--color-100);
+}
+.card:hover p {
+    color: var(--color-400); /* Or any other color you prefer */
+}
+
+.card h2 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-top: 0;
+}
+
+/* Song List Styles */
+.song-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* li {
+    background-color: #333;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+} */
+li {
+    background-color: var(--color-400); 
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+li:hover {
+    color:var(--color-400);
+    background-color: var(--color-100);
+}
+
+/* Updated Styles for the Player */
+
+/* Player Wrapper */
+.player-wrapper {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: var(--color-400);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+/* Song Info Section */
+.song-info {
+    margin-bottom: 30px;
+}
+
+.song-info img {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.song-info h1 {
+    margin: 20px 0 10px;
+    font-size: 24px;
+    color: var(--color-100); 
+}
+
+.song-info p {
+    color: #B3B3B3;
+    font-size: 18px;
+}
+
+/* Custom Controls */
+.custom-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#playPauseBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#playIcon {
+    width: 40px;
+    height: 40px; /* Size of the icon */
+}
+
+#progressBar {
+    width: 100%;
+    height: 8px;
+    background: #555;
+    border-radius: 5px;
+    appearance: none;
+    margin-right: 10px;
+}
+
+#progressBar::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color:var(--color-100);
+    border-radius: 50%;
+}
+
+#progressBar::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background-color: var(--color-100);
+    border-radius: 50%;
+}
+
+.volume-control {
+    margin-top: 20px;
+}
+
+#volumeControl {
+    width: 150px;
+    background-color: #555;
+    appearance: none;
+    height: 5px;
+    border-radius: 5px;
+}
+
+#volumeControl::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: var(--color-100);
+    border-radius: 50%;
+}
+
+#volumeControl::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background-color: var(--color-100);
+    border-radius: 50%;
+}
