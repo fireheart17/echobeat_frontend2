@@ -12,6 +12,7 @@ import SpotifyAuth from "./pages/SpotifyLogin";
 import Test from "./pages/Test";
 import Likedplaylists from "./pages/Likedplaylists";
 import Likedalbums from "./pages/Likedalbums";
+import Likedpodcasts from "./pages/Likedpodcasts";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
   {
     path: "/likedalbums/userId/:userId",
     element: <Likedalbums />,
+  },
+  {
+    path: "/likedpodcasts/userId/:userId",
+    element: <Likedpodcasts />,
   },
   // {
   //   path: "/spotify_auth",
