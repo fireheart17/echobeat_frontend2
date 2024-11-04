@@ -57,4 +57,8 @@ export const router = createBrowserRouter([
     path: "/likedplaylists/userId/:userId",
     element: <Likedplaylists />,
   },
+  {
+    path: "/test/:userId",
+    element: <Test />,
+  },
 ]);
