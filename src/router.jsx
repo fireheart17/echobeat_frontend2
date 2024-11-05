@@ -13,6 +13,7 @@ import Test from "./pages/Test";
 import Likedplaylists from "./pages/Likedplaylists";
 import Likedalbums from "./pages/Likedalbums";
 import Likedpodcasts from "./pages/Likedpodcasts";
+import SearchSongs from "./components/SearchSongs";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
     path: "/likedpodcasts/userId/:userId",
     element: <Likedpodcasts />,
   },
+  {
+    path: "/search",
+    element: <SearchSongs />,
+  }
   // {
   //   path: "/spotify_auth",
   //   element: <SpotifyAuth />,

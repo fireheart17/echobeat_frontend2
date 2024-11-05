@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import './../pages/artist_styles.css';
-
 const Search = ({ onSearch }) => {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('songs'); // Default category
