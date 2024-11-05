@@ -14,7 +14,6 @@ const Album = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (Cookies.get("token") == null) navigate("/login")
         const fetchData = async () => {
             try {
                 const res = await fetch('http://localhost:8081/api/users/validate', {

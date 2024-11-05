@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import "./artist_styles.css";
-// import "./style.css";
+import CheckAuth from "../components/CheckAuth";
 
 const ArtistProfile = () => {
     const { artistId } = useParams();  // Access artistId from URL
@@ -72,103 +72,106 @@ const ArtistProfile = () => {
     };
 
     return (
-        <div style={{width:'100vw',display:'flex',flexDirection:'column',alignItems:'center',backgroundColor:'blanchedalmond'}}>
-            <header>
-                {/* Assuming fragments/navbar is another React component */}
-                {/* <Navbar /> */}
-            </header>
+        <>
+            <CheckAuth />
+            <div style={{ width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'blanchedalmond' }}>
+                <header>
+                    {/* Assuming fragments/navbar is another React component */}
+                    {/* <Navbar /> */}
+                </header>
 
-            <section className="profile-section">
-                <div className="profile-container">
-                    <div className="profile-info">
-                        <img
-                            src="https://avatars.githubusercontent.com/u/118014773?v=4"
-                            alt="User Image"
-                            className="profile-img"
-                        />
-                        <div className="profile-details">
-                            <h2>{`${artist?.first_name} ${artist?.last_name}`}</h2>
-                            <p className="followers">{`#Followers: ${artist?.follower_count}`}</p>
-                            <p className="global-rank">{`Global Rank: ${artist?.global_rank}`}</p>
-                            <p className="country">{`Country: ${artist?.country}`}</p>
-                            <button className="follow-btn">Follow</button>
+                <section className="profile-section">
+                    <div className="profile-container">
+                        <div className="profile-info">
+                            <img
+                                src="https://avatars.githubusercontent.com/u/118014773?v=4"
+                                alt="User Image"
+                                className="profile-img"
+                            />
+                            <div className="profile-details">
+                                <h2>{`${artist?.first_name} ${artist?.last_name}`}</h2>
+                                <p className="followers">{`#Followers: ${artist?.follower_count}`}</p>
+                                <p className="global-rank">{`Global Rank: ${artist?.global_rank}`}</p>
+                                <p className="country">{`Country: ${artist?.country}`}</p>
+                                <button className="follow-btn">Follow</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="profile-nav">
-                        <ul>
-                            <li>
-                                <a
-                                    href="#"
-                                    className={activeSection === 'overview' ? 'active' : ''}
-                                    onClick={() => showSection('overview')}
-                                >
-                                    Overview
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className={activeSection === 'songs' ? 'active' : ''}
-                                    onClick={() => showSection('songs')}
-                                >
-                                    Songs
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className={activeSection === 'albums' ? 'active' : ''}
-                                    onClick={() => showSection('albums')}
-                                >
-                                    Albums
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            {activeSection === 'overview' && (
-                <section className="about-section" id="overview">
-                    <h3>{`About ${artist?.first_name}`}</h3>
-                    <div className="about-container">{artist?.about}</div>
-                </section>
-            )}
-
-            {activeSection === 'songs' && (
-                <section id="songs">
-                    <div className="song-list-container">
-                        <ul id="songList">
-                            {tracks?.map((track, index) => (
-                                <li key={index} className="song">
-                                    <div>{track?.track_name}</div>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </section>
-            )}
-
-            {activeSection === 'albums' && (
-                <section id="albums">
-                    <div className="album-list-container">
-                        <ul id="albumList">
-                            {albums?.map((album, index) => (
-                                <li key={index} className="album">
-                                    <a href={`/albums/${album.id}`} className="nlink">
-                                        <div>{album?.title}</div>
+                        <div className="profile-nav">
+                            <ul>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className={activeSection === 'overview' ? 'active' : ''}
+                                        onClick={() => showSection('overview')}
+                                    >
+                                        Overview
                                     </a>
                                 </li>
-                            ))}
-                        </ul>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className={activeSection === 'songs' ? 'active' : ''}
+                                        onClick={() => showSection('songs')}
+                                    >
+                                        Songs
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className={activeSection === 'albums' ? 'active' : ''}
+                                        onClick={() => showSection('albums')}
+                                    >
+                                        Albums
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </section>
-            )}
 
-            <footer>
-                <p>&copy; 2024 EchoBeat</p>
-            </footer>
-        </div>
+                {activeSection === 'overview' && (
+                    <section className="about-section" id="overview">
+                        <h3>{`About ${artist?.first_name}`}</h3>
+                        <div className="about-container">{artist?.about}</div>
+                    </section>
+                )}
+
+                {activeSection === 'songs' && (
+                    <section id="songs">
+                        <div className="song-list-container">
+                            <ul id="songList">
+                                {tracks?.map((track, index) => (
+                                    <li key={index} className="song">
+                                        <div>{track?.track_name}</div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </section>
+                )}
+
+                {activeSection === 'albums' && (
+                    <section id="albums">
+                        <div className="album-list-container">
+                            <ul id="albumList">
+                                {albums?.map((album, index) => (
+                                    <li key={index} className="album">
+                                        <a href={`/albums/${album.id}`} className="nlink">
+                                            <div>{album?.title}</div>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </section>
+                )}
+
+                <footer>
+                    <p>&copy; 2024 EchoBeat</p>
+                </footer>
+            </div>
+        </>
     );
 };
 
