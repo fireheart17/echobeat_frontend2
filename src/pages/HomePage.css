@@ -1,0 +1,60 @@
+/* HomePage.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #eae4db; /* Light beige background */
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #7f6b5b; /* Light brown text */
+    text-align: center;
+}
+
+.header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.app-name {
+    font-size: 2.5rem;
+    color: #7f6b5b;
+}
+
+.main-content {
+    max-width: 600px;
+    padding: 20px;
+}
+
+.tagline {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #a68b73; /* Matching the color scheme */
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #7f6b5b;
+    margin-bottom: 40px;
+}
+
+.get-started-btn {
+    background-color: #a68b73; /* Button color */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.get-started-btn:hover {
+    background-color: #7f6b5b; /* Darker on hover */
+}
