@@ -67,7 +67,7 @@ export const router = createBrowserRouter([
   {
     path: "/search",
     element: <SearchSongs />,
-  }
+  },
   // {
   //   path: "/spotify_auth",
   //   element: <SpotifyAuth />,
