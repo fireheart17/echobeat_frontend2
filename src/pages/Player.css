@@ -1,0 +1,40 @@
+.track-wrapper{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:whitesmoke;
+}
+
+.track-card{
+    background:var(--color-200);
+    padding:10px;
+    border-radius:10px;
+    width:500px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.track-player{
+    padding:10px;
+}
+
+.track-details{
+    display:flex;
+    widht:100%;
+    justify-content:space-between;
+    padding:10px;
+    font-style:italic;
+}
+
+.track-name{
+    font-weight:700;
+    font-size:20px;
+}
+
+.track-description{
+    padding-left:10px;
+}
+
+.rhap_progress-bar{
+    background:white;
+}
