@@ -1,0 +1,35 @@
+<svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="waveGradient" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#D1B29F" />
+      <stop offset="100%" stop-color="#D1B29F" />
+    </linearGradient>
+    <animation id="waveAnimation">
+      <animate attributeName="height" from="20" to="180" dur="1s" repeatCount="indefinite" />
+    </animation>
+    <g id="randomColoredBars">
+      <rect x="0" y="100" width="20" height="100" fill="#FF6B6B" />
+      <rect x="40" y="110" width="20" height="90" fill="#FFD166" />
+      <rect x="80" y="80" width="20" height="120" fill="#48CAE4" />
+      <rect x="120" y="90" width="20" height="110" fill="#7209B7" />
+      <rect x="160" y="20" width="20" height="180" fill="#8AC926" />
+      <rect x="200" y="100" width="20" height="100" fill="#9B5DE5" />
+      <rect x="240" y="110" width="20" height="90" fill="#F15BB5" />
+      <rect x="280" y="80" width="20" height="120" fill="#FFA8B6" />
+      <rect x="320" y="90" width="20" height="110" fill="#00F5D4" />
+      <rect x="360" y="20" width="20" height="180" fill="#91A8D0" />
+      <rect x="400" y="100" width="20" height="100" fill="#B388EB" />
+      <rect x="440" y="110" width="20" height="90" fill="#EF476F" />
+      <rect x="480" y="80" width="20" height="120" fill="#4361EE" />
+      <rect x="520" y="90" width="20" height="110" fill="#FFC300" />
+      <rect x="560" y="20" width="20" height="180" fill="#00B4D8" />
+      <rect x="600" y="100" width="20" height="100" fill="#81B214" />
+      <rect x="640" y="110" width="20" height="90" fill="#6A2C70" />
+      <rect x="680" y="80" width="20" height="120" fill="#D90429" />
+      <rect x="720" y="90" width="20" height="110" fill="#00F5D4" />
+      <rect x="760" y="20" width="20" height="180" fill="#FFCB77" />
+    </g>
+  </defs>
+
+  <use href="#randomColoredBars" />
+</svg>

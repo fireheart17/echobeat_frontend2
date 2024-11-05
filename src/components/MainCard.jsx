@@ -12,6 +12,7 @@ const MainCard = ({ title, items }) => {
             <a key={song.track_id} href={`/player/${song.track_id}`} className="song-link sub-card">
               <b>{song.track_name}</b>
               <div style={{'fontSize':'0.8rem'}}>{song.genre}</div>
+              <img src="./wave.svg" alt="" style={{position:'relative',width:'300px',transform:'translate(0px,20px)'}}/>
             </a>
         //   </div>
         ))}

@@ -3,6 +3,7 @@ import './chart_style.css';
 import Navbar from './../components/Navbar';
 import { wait } from '@testing-library/user-event/dist/utils';
 import { useParams } from 'react-router-dom';
+import CheckAuth from "../components/CheckAuth";
 
 const Chart = () => {
   const { id } = useParams(); // Get ID from URL params
@@ -46,6 +47,8 @@ const Chart = () => {
     fetchChartSongs();
   }, [id]); // Add id as dependency
   return (
+    <>
+    <CheckAuth />
     <div>
       <Navbar /> {/* Assuming Navbar is a separate React component */}
       <div className="song-list-container">
@@ -60,6 +63,7 @@ const Chart = () => {
         </ul>
       </div>
     </div>
+    </>
   );
 };
 

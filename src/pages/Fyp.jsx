@@ -8,27 +8,28 @@ import MainCard from "./../components/MainCard";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import CheckAuth from "../components/CheckAuth";
+
 const App = () => {
   // Example state for demonstration
   const navigate = useNavigate();
-  const [name,setName]=useState("")
+  const [name, setName] = useState("")
   const [topPicks, setTopPicks] = useState([]);
 
   const [newTracks, setNewTracks] = useState([]);
   useEffect(() => {
-    if (Cookies.get("token") == null) navigate("/home")
-    const fetchData=async ()=>{
-      const res=await fetch(`http://localhost:8081/api/users/profile`,{
-        method:"GET",
-        headers:{
-          Authorization:`Bearer ${Cookies.get("token")}`
+    // if (Cookies.get("token") == null) navigate("/home")
+    const fetchData = async () => {
+      const res = await fetch(`http://localhost:8081/api/users/profile`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`
         }
       })
-      if(res.status===200){
-        const resJSON=await res.json()
+      if (res.status === 200) {
+        const resJSON = await res.json()
         setName(resJSON['first_name'])
-        
-      }else{
+
+      } else {
         console.log("user not found");
         navigate("/home");
       }
@@ -37,32 +38,32 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const fetchData=async ()=>{
-      const res=await fetch(`http://localhost:8081/api/toppicks`,{
-        method:"GET"
+    const fetchData = async () => {
+      const res = await fetch(`http://localhost:8081/api/toppicks`, {
+        method: "GET"
       })
-      if(res.status===200){
-        const resJSON=await res.json()
+      if (res.status === 200) {
+        const resJSON = await res.json()
         setTopPicks(resJSON)
         console.log(resJSON);
-        
-      }else{
+
+      } else {
         console.log("top picks not found");
       }
     }
     fetchData()
   }, []);
   useEffect(() => {
-    const fetchData=async ()=>{
-      const res=await fetch(`http://localhost:8081/api/newtracks`,{
-        method:"GET"
+    const fetchData = async () => {
+      const res = await fetch(`http://localhost:8081/api/newtracks`, {
+        method: "GET"
       })
-      if(res.status===200){
-        const resJSON=await res.json()
+      if (res.status === 200) {
+        const resJSON = await res.json()
         setNewTracks(resJSON)
         console.log(resJSON);
-        
-      }else{
+
+      } else {
         console.log("top picks not found");
       }
     }
@@ -73,7 +74,7 @@ const App = () => {
     <div>
       <CheckAuth />
       <Navbar />
-      <HeroSection name={name}/>
+      <HeroSection name={name} />
       <div className="wrapper">
         <MainCard title="Top Picks" items={topPicks} />
         <MainCard title="New Releases" items={newTracks} />

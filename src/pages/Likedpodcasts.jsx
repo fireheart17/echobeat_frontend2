@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 import './Playlist.css';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-   
+import CheckAuth from "../components/CheckAuth";
+
 const Podcast = () => {
     // const { id } = useParams(); // Capture playlist ID from URL
     const [podcasts, setPodcast] = useState([]);
@@ -14,7 +15,6 @@ const Podcast = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (Cookies.get("token") == null) navigate("/login")
         const fetchData = async () => {
             try {
                 const res = await fetch('http://localhost:8081/api/users/validate', {
@@ -107,43 +107,48 @@ const Podcast = () => {
     // };
 
     return (
-        <div className="playlist-container">
-            <h1>Liked Podcasts</h1>
-            <div className="action-buttons">
-                {/* <button className="play-all-btn" onClick={playAllSongs}>
+        <>
+            <CheckAuth />
+            <div className="playlist-container">
+                <h1>Liked Podcasts</h1>
+                <div className="action-buttons">
+                    {/* <button className="play-all-btn" onClick={playAllSongs}>
                     Play All
                 </button> */}
-            </div>
-            <div className="songs-container">
-                <div className="songs-header">
-                    <div>#</div>
-                    <div>Title</div>
-                    <div>Artist</div>
-                    <div className="header-duration">Genre</div>
                 </div>
-                {isLoading ? (
-                    <p>Loading Podcasts...</p>
-                ) : (
-                    podcasts.map((podcast, index) => (
-                        <div key={podcast.podcastId} className="song-row">
-                            <div className="song-number">{index + 1}</div>
-                            <div className="song-title">
-                                <span>{podcast.podcastName}</span>
-                            </div>
-                            <div className="song-artist">
-                                <span>{podcast.artistName}</span>
-                            </div>
-                            <div className="song-duration">
-                                <span>{podcast.genre}</span>
-                            </div>
-                            {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
-                            {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
-                            {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
-                        </div>
-                    ))
-                )}
+                <div className="songs-container">
+                    <div className="songs-header">
+                        <div>#</div>
+                        <div>Title</div>
+                        <div>Artist</div>
+                        <div className="header-duration">Genre</div>
+                    </div>
+                    {isLoading ? (
+                        <p>Loading Podcasts...</p>
+                    ) : (
+                        podcasts.map((podcast, index) => (
+                            <a key={podcast.podcastId} href={`/player/${podcast.podcastId}`} className="song-link">
+                                <div key={podcast.podcastId} className="song-row">
+                                    <div className="song-number">{index + 1}</div>
+                                    <div className="song-title">
+                                        <span>{podcast.podcastName}</span>
+                                    </div>
+                                    <div className="song-artist">
+                                        <span>{podcast.artistName}</span>
+                                    </div>
+                                    <div className="song-duration">
+                                        <span>{podcast.genre}</span>
+                                    </div>
+                                    {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
+                                    {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
+                                    {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
+                                </div>
+                            </a>
+                        ))
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
