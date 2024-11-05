@@ -5,8 +5,10 @@ const Search = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
   const handleInputChange = (e) => {
-    setQuery(e.target.value);
-    handleSubmit(e);
+    e.preventDefault();
+    setQuery(q=>e.target.value);
+    // handleSubmit(e);
+    onSearch(e.target.value);
   };
 
   const handleSubmit = (e) => {
