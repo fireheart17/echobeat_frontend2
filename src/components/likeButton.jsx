@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './likeButton.css';
 
 const LikeButton = ({ token, track_id}) => {
-const [user, setUser] = useState(null);
-    try {
-        const res = fetch('http://localhost:8081/api/users/validate', {
-            method: 'GET',
-            headers: {
-            Authorization : `Bearer ${token}`,
-            },
-        });
-        const result = res.json();
-        const intResult = Number(result);
-        setUser(intResult);
-        console.log(intResult);
-    } 
-    catch (error) {
-        console.error('Error in fetching the user');
-    }
+const [user, setUser] = useState([]);
+    console.log("token form button " + token);
+    console.log("track from button " + track_id);
+    useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const res = fetch('http://localhost:8081/api/users/validate', {
+                method: 'GET',
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            });
+            const data = res.json();
+            setUser(data);
+            console.log(data);
+        } 
+        catch (error) {
+            console.error('Error in fetching the user');
+        }
+    }; fetchData()}, []);
+
   const onClickHandler = async() => {
     if (user && track_id) {
         const data = { user_id : user, track_id: track_id };
