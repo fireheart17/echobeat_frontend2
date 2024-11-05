@@ -72,9 +72,8 @@ export const router = createBrowserRouter([
   //   path: "/spotify_auth",
   //   element: <SpotifyAuth />,
   // },
-  // {
-  //   path: "/player/:id",
-  //   element: <Player />,
-  // },
-  
+  {
+    path: "/player/:id",
+    element: <Player />,
+  },
 ]);
