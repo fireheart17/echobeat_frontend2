@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './Playlist.css';
 import SearchSongs from '../components/SearchSongs';
-   
+import CheckAuth from "../components/CheckAuth";
+
 const Playlist = () => {
     const { id } = useParams(); // Capture playlist ID from URL
     const [songs, setSongs] = useState([]);
@@ -48,7 +49,7 @@ const Playlist = () => {
         }
     };
     useEffect(() => {
-        fetchPlaylistData().then(res=>{console.log(res)});
+        fetchPlaylistData().then(res => { console.log(res) });
     }, [id]);
 
     // Function to handle playing all songs
@@ -70,45 +71,48 @@ const Playlist = () => {
     };
 
     return (
-        <div className="playlist-container">
-            <h1>Playlist</h1>
-            <div className="action-buttons">
-                <button className="play-all-btn" onClick={playAllSongs}>
-                    Play All
-                </button>
-            </div>
-            <div className="songs-container">
-                <div className="songs-header">
-                    <div>#</div>
-                    <div>Title</div>
-                    <div>Artist</div>
-                    <div className="header-duration">Duration</div>
+        <>
+            <CheckAuth />
+            <div className="playlist-container">
+                <h1>Playlist</h1>
+                <div className="action-buttons">
+                    <button className="play-all-btn" onClick={playAllSongs}>
+                        Play All
+                    </button>
                 </div>
-                {isLoading ? (
-                    <p>Loading songs...</p>
-                ) : (
-                    songs.map((song, index) => (
-                        <div key={song.trackId} className="song-row">
-                            <div className="song-number">{index + 1}</div>
-                            <div className="song-title">
-                                <span>{song.trackName}</span>
+                <div className="songs-container">
+                    <div className="songs-header">
+                        <div>#</div>
+                        <div>Title</div>
+                        <div>Artist</div>
+                        <div className="header-duration">Duration</div>
+                    </div>
+                    {isLoading ? (
+                        <p>Loading songs...</p>
+                    ) : (
+                        songs.map((song, index) => (
+                            <div key={song.trackId} className="song-row">
+                                <div className="song-number">{index + 1}</div>
+                                <div className="song-title">
+                                    <span>{song.trackName}</span>
+                                </div>
+                                <div className="song-artist">
+                                    <span>{song.artistName}</span>
+                                </div>
+                                <div className="song-duration">
+                                    <span>{song.duration}</span>
+                                </div>
+                                {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
+                                {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
+                                {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
                             </div>
-                            <div className="song-artist">
-                                <span>{song.artistName}</span>
-                            </div>
-                            <div className="song-duration">
-                                <span>{song.duration}</span>
-                            </div>
-                            {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
-                            {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
-                            {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
-                        </div>
-                    ))
-                )}
-            </div>
+                        ))
+                    )}
+                </div>
 
-            <div style={{marginTop:'40px'}}><SearchSongs playlist_id={id} fetchData={fetchPlaylistData}/></div>
-        </div>
+                <div style={{ marginTop: '40px' }}><SearchSongs playlist_id={id} fetchData={fetchPlaylistData} /></div>
+            </div>
+        </>
     );
 };
 

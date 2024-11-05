@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 import './Playlist.css';
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-   
+import CheckAuth from "../components/CheckAuth";
+
 const Album = () => {
     // const { id } = useParams(); // Capture playlist ID from URL
     const [albums, setAlbums] = useState([]);
@@ -42,7 +43,7 @@ const Album = () => {
         };
         fetchData()
     }, []);
-    
+
     // Fetch playlist data from the API and get artist details for each track
     useEffect(() => {
         const fetchPlaylistData = async () => {
@@ -106,43 +107,46 @@ const Album = () => {
     // };
 
     return (
-        <div className="playlist-container">
-            <h1>Liked Albums</h1>
-            <div className="action-buttons">
-                {/* <button className="play-all-btn" onClick={playAllSongs}>
+        <>
+            <CheckAuth />
+            <div className="playlist-container">
+                <h1>Liked Albums</h1>
+                <div className="action-buttons">
+                    {/* <button className="play-all-btn" onClick={playAllSongs}>
                     Play All
                 </button> */}
-            </div>
-            <div className="songs-container">
-                <div className="songs-header">
-                    <div>#</div>
-                    <div>Title</div>
-                    <div>Artist</div>
-                    <div className="header-duration">Genre</div>
                 </div>
-                {isLoading ? (
-                    <p>Loading albums...</p>
-                ) : (
-                    albums.map((album, index) => (
-                        <div key={album.albumId} className="song-row">
-                            <div className="song-number">{index + 1}</div>
-                            <div className="song-title">
-                                <span>{album.albumName}</span>
+                <div className="songs-container">
+                    <div className="songs-header">
+                        <div>#</div>
+                        <div>Title</div>
+                        <div>Artist</div>
+                        <div className="header-duration">Genre</div>
+                    </div>
+                    {isLoading ? (
+                        <p>Loading albums...</p>
+                    ) : (
+                        albums.map((album, index) => (
+                            <div key={album.albumId} className="song-row">
+                                <div className="song-number">{index + 1}</div>
+                                <div className="song-title">
+                                    <span>{album.albumName}</span>
+                                </div>
+                                <div className="song-artist">
+                                    <span>{album.artistName}</span>
+                                </div>
+                                <div className="song-duration">
+                                    <span>{album.genre}</span>
+                                </div>
+                                {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
+                                {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
+                                {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
                             </div>
-                            <div className="song-artist">
-                                <span>{album.artistName}</span>
-                            </div>
-                            <div className="song-duration">
-                                <span>{album.genre}</span>
-                            </div>
-                            {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
-                            {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
-                            {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
-                        </div>
-                    ))
-                )}
+                        ))
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

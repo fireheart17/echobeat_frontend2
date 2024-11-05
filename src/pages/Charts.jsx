@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import './chart_style.css';
 import Navbar from './../components/Navbar';
+import CheckAuth from "../components/CheckAuth";
 
 const Charts = () => {
 
@@ -28,27 +29,30 @@ const Charts = () => {
         console.error('Error fetching chart:', error);
       }
     };
-  
+
     fetchChart();
   }, []);
 
   return (
-    <div>
-      <Navbar /> {/* Assuming Navbar is a separate React component */}
+    <>
+      <CheckAuth />
+      <div>
+        <Navbar /> {/* Assuming Navbar is a separate React component */}
 
-      <div className="charts-container">
-        <h1 className='h1-charts'>Top Charts</h1>
-        {charts.map((chart) => (
-          <div
-            key={chart.chart_id}
-            className="card"
-            onClick={() => (window.location.href = `/chart/${chart.chart_id}`)}
-          >
-            <b>Chart name: {chart.chart_type}</b>
-          </div>
-        ))}
+        <div className="charts-container">
+          <h1 className='h1-charts'>Top Charts</h1>
+          {charts.map((chart) => (
+            <div
+              key={chart.chart_id}
+              className="card"
+              onClick={() => (window.location.href = `/chart/${chart.chart_id}`)}
+            >
+              <b>Chart name: {chart.chart_type}</b>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

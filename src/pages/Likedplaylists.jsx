@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 import './Playlist.css';
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-   
+import CheckAuth from "../components/CheckAuth";
+
 const Song = () => {
     // const { id } = useParams(); // Capture playlist ID from URL
     const [playlists, setPlaylists] = useState([]);
@@ -61,8 +62,8 @@ const Song = () => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
                         }
-                        const token = await response.text(); 
-                        
+                        const token = await response.text();
+
                         const response2 = await fetch('http://localhost:8081/api/users/profile', {
                             method: 'GET',
                             headers: {
@@ -70,11 +71,11 @@ const Song = () => {
                                 'Content-Type': 'application/json'
                             }
                         });
-    
+
                         if (!response2.ok) {
                             throw new Error('Failed to fetch user profile');
                         }
-    
+
                         const user = await response2.json();
 
 
@@ -86,7 +87,7 @@ const Song = () => {
                         const user_name = user
                             ? `${user.username}`
                             : "Unknown Artist";
-                        console.log("hello"+ user.user_name);
+                        console.log("hello" + user.user_name);
                         return {
                             playlistId: playlist.playlist_id,
                             playlistName: playlist.title,
@@ -127,43 +128,46 @@ const Song = () => {
     // };
 
     return (
-        <div className="playlist-container">
-            <h1>Liked Playlists</h1>
-            <div className="action-buttons">
-                {/* <button className="play-all-btn" onClick={playAllSongs}>
+        <>
+            <CheckAuth />
+            <div className="playlist-container">
+                <h1>Liked Playlists</h1>
+                <div className="action-buttons">
+                    {/* <button className="play-all-btn" onClick={playAllSongs}>
                     Play All
                 </button> */}
-            </div>
-            <div className="songs-container">
-                <div className="songs-header">
-                    <div>#</div>
-                    <div>Title</div>
-                    <div>Creator</div>
-                    <div className="header-duration">Duration</div>
                 </div>
-                {isLoading ? (
-                    <p>Loading playlists...</p>
-                ) : (
-                    playlists.map((playlist, index) => (
-                        <div key={playlist.playlistId} className="song-row">
-                            <div className="song-number">{index + 1}</div>
-                            <div className="song-title">
-                                <span>{playlist.playlistName}</span>
+                <div className="songs-container">
+                    <div className="songs-header">
+                        <div>#</div>
+                        <div>Title</div>
+                        <div>Creator</div>
+                        <div className="header-duration">Duration</div>
+                    </div>
+                    {isLoading ? (
+                        <p>Loading playlists...</p>
+                    ) : (
+                        playlists.map((playlist, index) => (
+                            <div key={playlist.playlistId} className="song-row">
+                                <div className="song-number">{index + 1}</div>
+                                <div className="song-title">
+                                    <span>{playlist.playlistName}</span>
+                                </div>
+                                <div className="song-artist">
+                                    <span>{playlist.userName}</span>
+                                </div>
+                                <div className="song-duration">
+                                    <span>{playlist.duration}</span>
+                                </div>
+                                {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
+                                {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
+                                {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
                             </div>
-                            <div className="song-artist">
-                                <span>{playlist.userName}</span>
-                            </div>
-                            <div className="song-duration">
-                                <span>{playlist.duration}</span>
-                            </div>
-                            {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
-                            {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
-                            {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
-                        </div>
-                    ))
-                )}
+                        ))
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
