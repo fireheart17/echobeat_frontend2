@@ -34,7 +34,6 @@ const Song = () => {
 
                 // Assuming the API directly returns an integer user_id
                 if (Number.isInteger(data)) {
-                    console.log("hwere" +data)
                     setId(data); // Set the `id` state with the integer value returned
                 } else {
                     console.error('Expected an integer user_id but received:', data);
