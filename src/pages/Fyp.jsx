@@ -7,6 +7,7 @@ import HeroSection from "./../components/HeroSection";
 import MainCard from "./../components/MainCard";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import CheckAuth from "../components/CheckAuth";
 const App = () => {
   // Example state for demonstration
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const App = () => {
 
   const [newTracks, setNewTracks] = useState([]);
   useEffect(() => {
-    if (Cookies.get("token") == null) navigate("/login")
+    if (Cookies.get("token") == null) navigate("/home")
     const fetchData=async ()=>{
       const res=await fetch(`http://localhost:8081/api/users/profile`,{
         method:"GET",
@@ -70,6 +71,7 @@ const App = () => {
 
   return (
     <div>
+      <CheckAuth />
       <Navbar />
       <HeroSection name={name}/>
       <div className="wrapper">
