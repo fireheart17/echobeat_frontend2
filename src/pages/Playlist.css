@@ -4,6 +4,8 @@
     background: #E5D9C7;
     padding: 32px;
     color: #4A4233;
+    width:100vw;
+    margin-left:0;
 }
   
 .playlist-content {

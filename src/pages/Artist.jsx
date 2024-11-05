@@ -72,7 +72,7 @@ const ArtistProfile = () => {
     };
 
     return (
-        <div>
+        <div style={{width:'100vw',display:'flex',flexDirection:'column',alignItems:'center',backgroundColor:'blanchedalmond'}}>
             <header>
                 {/* Assuming fragments/navbar is another React component */}
                 {/* <Navbar /> */}
