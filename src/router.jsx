@@ -17,7 +17,7 @@ import SearchSongs from "./components/SearchSongs";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import HomePage from "./pages/HomePage";
-import LikeButton from "./components/likeButton";
+import Demo from "./pages/Demo";
 
 export const router = createBrowserRouter([
   {
@@ -91,5 +91,9 @@ export const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path : "/demo",
+    element : <Demo />,
   },
 ]);
