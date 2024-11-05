@@ -1,6 +1,6 @@
 // components/HeroSection.js
 import React from 'react';
-import '../pages/Fyp.css'; // Import CSS specific to this component
+import './HeroSection.css'; // Import CSS specific to this component
 
 const HeroSection = (props) => {
   return (

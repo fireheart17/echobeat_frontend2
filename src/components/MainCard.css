@@ -1,0 +1,69 @@
+
+.main-card {
+    padding: 1.25rem;
+    color: #FFF;
+    border: 1px solid #ccc;
+    border-radius: 0.625rem;
+    background-color: #D8D2C2;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+    max-width: 100%;
+    position: relative;
+    /* background:var(--color-200); */
+}
+
+.sub-cards-container {
+    display: flex;
+    gap: 0.625rem;
+    overflow-x: auto;
+    padding: 0.625rem;
+    touch-action: pan-x;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.sub-cards-container::-webkit-scrollbar {
+    display: none;
+}
+
+.sub-card {
+    min-width: 15rem;
+    height: 9.375rem;
+    margin-right: 2%;
+    background-color: var(--color-100);
+    color: var(--color-500);
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.625rem;
+    flex-shrink: 0;
+    /* text-align: center; */
+    font-size: 1.125rem;
+    padding: 0.625rem;
+    box-sizing: border-box;
+    overflow:hidden;
+}
+
+.sub-card:hover {
+    background-color: white;
+}
+
+.song-link {
+    text-decoration: none;
+    color: var(--color-500);
+}
+
+.song-link:hover {
+    color: var(--color-100);
+}
+
+@media (max-width: 900px) {
+
+    .sub-card {
+        min-width: 10rem;
+        height: 7.5rem;
+    }
+}

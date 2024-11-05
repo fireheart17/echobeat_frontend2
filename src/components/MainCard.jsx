@@ -1,11 +1,11 @@
 // components/MainCard.js
 import React from 'react';
-import '../pages/Fyp.css'; // Import CSS specific to this component
+import './MainCard.css'; // Import CSS specific to this component
 
 const MainCard = ({ title, items }) => {
   return (
     <div className="main-card">
-      <h2>{title}</h2>
+      <h2 style={{color:'var(--color-300)'}}>{title}</h2>
       <div className="sub-cards-container">
         {items.map((song) => (
         //   <div key={song.id} className="sub-card">

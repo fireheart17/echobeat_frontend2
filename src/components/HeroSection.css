@@ -1,0 +1,80 @@
+.hero-section {
+    /* width: 100%; */
+    padding-top: 3rem;
+    /* 50px -> 3rem */
+    padding-bottom: 6.25rem;
+    /* 100px -> 6.25rem */
+}
+
+.hero-text {
+    font-size: 2.5rem;
+    /* Remains the same, relative to the root font size */
+    font-weight: 700;
+    color: var(--color-200);
+    max-width: 31.25rem;
+    /* 500px -> 31.25rem */
+    margin-left: 50px;
+    /* 20px -> 1.25rem */
+    margin-bottom: 1.25rem;
+    /* 20px -> 1.25rem */
+    padding-bottom: 6.25rem;
+    /* 100px -> 6.25rem */
+}
+
+.buttons {
+    display: flex;
+    padding: 1.25rem;
+    /* 20px -> 1.25rem */
+    /* border: 1px solid #ccc; */
+    border-radius: 0.625rem;
+    /* 10px -> 0.625rem */
+    /* background-color: #f9f9f9; */
+    margin-bottom: 1.25rem;
+    /* 20px -> 1.25rem */
+    overflow: hidden;
+    max-width: 100%;
+    /* Remains the same */
+    position: relative;
+}
+
+.explore-button {
+    text-decoration: none;
+    /* width: 15%;  This is a percentage, so it will scale with the container */
+    background-color: var(--color-200);
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    /* Remains the same */
+    color: white;
+    border-radius: 0.625rem;
+    /* 10px -> 0.625rem */
+    padding: 1%;
+    margin-left: 5rem;
+    margin-right: 15rem;
+    /* 300px -> 18.75rem */
+}
+
+.explore-button:hover {
+    background-color: var(--color-300);
+}
+
+@media (max-width: 900px) {
+
+    .buttons {
+        display: block;
+    }
+
+
+    .hero-text {
+        font-size: 2rem;
+        margin-left: 0.625rem;
+        padding-bottom: 3.125rem;
+    }
+
+    .explore-button {
+        margin-left: 0;
+        width: 200px;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+}
