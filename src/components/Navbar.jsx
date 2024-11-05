@@ -34,8 +34,8 @@ const Navbar = () => {
             <a className="link" href="/charts">
               Charts
             </a>
-            <a className="link blocky" href="/login">
-              Login
+            <a className="link blocky" href="/logout">
+              Logout
             </a>
         </div>
           <button className="hamburger-menu blocky" id="hamburgerMenu" onClick={toggleMenu}>

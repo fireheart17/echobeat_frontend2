@@ -40,6 +40,7 @@ const Playlist = () => {
 
             // Update state with combined track and artist data
             setSongs(tracksWithArtists);
+            return "success";
         } catch (error) {
             console.error("Error fetching playlist data:", error);
         } finally {
@@ -47,7 +48,7 @@ const Playlist = () => {
         }
     };
     useEffect(() => {
-        fetchPlaylistData();
+        fetchPlaylistData().then(res=>{console.log(res)});
     }, [id]);
 
     // Function to handle playing all songs

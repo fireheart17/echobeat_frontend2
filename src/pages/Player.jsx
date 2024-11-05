@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 
 export default function Player() {
   const { id } = useParams();
-  console.log(id);
   const [track, setTrack] = useState({
     track_name: "",
     genre: "",

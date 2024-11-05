@@ -5,7 +5,7 @@ import Navbar from "./../components/Navbar";
 import HeroSection from "./../components/HeroSection";
 // import Menu from './../components/Menu';
 import MainCard from "./../components/MainCard";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 const App = () => {
   // Example state for demonstration
