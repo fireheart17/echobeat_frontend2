@@ -16,7 +16,7 @@ const App = () => {
 
   const [newTracks, setNewTracks] = useState([]);
   useEffect(() => {
-    if (Cookies.get("token") == null) navigate("/home")
+    // if (Cookies.get("token") == null) navigate("/home")
     const fetchData=async ()=>{
       const res=await fetch(`http://localhost:8081/api/users/profile`,{
         method:"GET",
