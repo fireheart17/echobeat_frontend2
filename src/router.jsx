@@ -17,6 +17,7 @@ import SearchSongs from "./components/SearchSongs";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import HomePage from "./pages/HomePage";
+import LikeButton from "./components/likeButton";
 
 export const router = createBrowserRouter([
   // {
@@ -79,16 +80,4 @@ export const router = createBrowserRouter([
     path: "/player/:id",
     element: <Player />,
   },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />
-  },
-  {
-    path: "/",
-    element: <HomePage />, 
-  }
 ]);
