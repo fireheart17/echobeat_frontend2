@@ -98,9 +98,9 @@ const Playlist = () => {
                             <div className="song-duration">
                                 <span>{song.duration}</span>
                             </div>
-                            <button onClick={() => playSong(song.trackId)}>Play</button>
-                            <button onClick={() => likeSong(song.trackId)}>Like</button>
-                            <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button>
+                            {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
+                            {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
+                            {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
                         </div>
                     ))
                 )}
