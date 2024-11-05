@@ -163,6 +163,7 @@ body.menu-open {
     overflow: hidden;
     max-width: 100%;
     position: relative;
+    /* background:var(--color-200); */
 }
 
 .sub-cards-container {
@@ -197,6 +198,7 @@ body.menu-open {
     font-size: 1.125rem;
     padding: 0.625rem;
     box-sizing: border-box;
+    overflow:hidden;
 }
 
 .sub-card:hover {
