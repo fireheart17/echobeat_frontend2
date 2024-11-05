@@ -72,13 +72,14 @@ const App = () => {
 
   return (
     <div>
+      <div className="spacer" style={{height:'60px'}}></div>
       <CheckAuth />
-      <Navbar />
       <HeroSection name={name} />
       <div className="wrapper">
         <MainCard title="Top Picks" items={topPicks} />
         <MainCard title="New Releases" items={newTracks} />
       </div>
+      <Navbar />
     </div>
   );
 };

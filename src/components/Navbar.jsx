@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import QuickLinks from "./QuickLinks";
 
 const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -25,7 +26,7 @@ const Navbar = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: isExpanded ? "space-between" : "center",
-          overflow: "hidden",
+          // overflow: "hidden",
         }}
       >
         <div
@@ -39,6 +40,7 @@ const Navbar = () => {
         </div>
         {isExpanded && (
           <div style={{ display: "flex", gap: "1rem", marginRight: "1rem" }}>
+            <QuickLinks />
             <a href="/" style={{ textDecoration: "none", color: "white" }}>
               Home
             </a>
@@ -51,7 +53,6 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-      <div className="spacer" style={{height:'30px'}}></div>
     </>
   );
 };

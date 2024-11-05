@@ -1,80 +1,81 @@
 .hero-section {
-    /* width: 100%; */
-    padding-top: 3rem;
-    /* 50px -> 3rem */
-    padding-bottom: 6.25rem;
-    /* 100px -> 6.25rem */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
 }
 
 .hero-text {
-    font-size: 2.5rem;
-    /* Remains the same, relative to the root font size */
-    font-weight: 700;
-    color: var(--color-200);
-    max-width: 31.25rem;
-    /* 500px -> 31.25rem */
-    margin-left: 50px;
-    /* 20px -> 1.25rem */
-    margin-bottom: 1.25rem;
-    /* 20px -> 1.25rem */
-    padding-bottom: 6.25rem;
-    /* 100px -> 6.25rem */
+  width: 100%;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-200);
+  /* max-width: 31.25rem; */
+  padding-left: 50px;
+  padding-bottom: 4rem;
 }
 
 .buttons {
-    display: flex;
-    padding: 1.25rem;
-    /* 20px -> 1.25rem */
-    /* border: 1px solid #ccc; */
-    border-radius: 0.625rem;
-    /* 10px -> 0.625rem */
-    /* background-color: #f9f9f9; */
-    margin-bottom: 1.25rem;
-    /* 20px -> 1.25rem */
-    overflow: hidden;
-    max-width: 100%;
-    /* Remains the same */
-    position: relative;
+  display: flex;
+  justify-content: center;
+  /* padding: 1.25rem; */
+  border-radius: 0.625rem;
+  width: 100%;
+  position: relative;
+  flex-wrap: wrap;
 }
 
 .explore-button {
-    text-decoration: none;
-    /* width: 15%;  This is a percentage, so it will scale with the container */
-    background-color: var(--color-200);
-    display: flex;
-    justify-content: center;
-    font-size: 1.2rem;
-    /* Remains the same */
-    color: white;
-    border-radius: 0.625rem;
-    /* 10px -> 0.625rem */
-    padding: 1%;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 25px;
+  font-style: italic;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  aspect-ratio: 1;
+  color: white;
+  border-radius: 0.625rem;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-shadow: 5px 5px 5px black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* padding: 1%;
     margin-left: 5rem;
-    margin-right: 15rem;
-    /* 300px -> 18.75rem */
+    margin-right: 15rem; */
+}
+
+.liked-songs {
+  background: url("./likedsongs.jpg");
+  background-repeat: no-repeat;
+  background-size: 150% 100%;
+}
+.liked-albums {
+  background: url("./likedalbums.jpg");
+  background-repeat: no-repeat;
+  background-size: 150% 100%;
+}
+.liked-playlists {
+  background: url("./likedplaylists.jpg");
+  background-repeat: no-repeat;
+  background-size: 150% 100%;
+}
+.liked-podcasts {
+  background: url("./likedpodcasts.jpg");
+  background-repeat: no-repeat;
+  background-size: 150% 100%;
 }
 
 .explore-button:hover {
-    background-color: var(--color-300);
+  -webkit-filter: brightness(70%);
 }
 
 @media (max-width: 900px) {
-
-    .buttons {
-        display: block;
-    }
-
-
-    .hero-text {
-        font-size: 2rem;
-        margin-left: 0.625rem;
-        padding-bottom: 3.125rem;
-    }
-
-    .explore-button {
-        margin-left: 0;
-        width: 200px;
-        margin-bottom: 20px;
-        font-size: 20px;
-    }
+  .explore-button {
+    width: 200px;
+    height: 100px;
+    margin-bottom:20px;
+  }
 }
