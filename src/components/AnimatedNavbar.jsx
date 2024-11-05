@@ -13,12 +13,12 @@ const Navbar = () => {
       <nav
         style={{
           position: "fixed",
-          left: isExpanded? "2.5vw":"50%",
+          left: "2.5vw",
           top: "20px",
           backgroundColor: "rgb(175, 154, 122)",
           color: "white",
           padding: "0.5rem",
-          transition: "all 1s",
+          transition: "all 2s",
           borderRadius: isExpanded ? "10px" : "50%",
           width: isExpanded ? "95%" : "3rem",
           height: "48px",
@@ -45,8 +45,8 @@ const Navbar = () => {
             <a href="/" style={{ textDecoration: "none", color: "white" }}>
               About
             </a>
-            <a href="/logout" style={{ textDecoration: "none", color: "white" }}>
-              logout
+            <a href="/" style={{ textDecoration: "none", color: "white" }}>
+              Contact
             </a>
           </div>
         )}
