@@ -148,21 +148,23 @@ const Song = () => {
                         <p>Loading playlists...</p>
                     ) : (
                         playlists.map((playlist, index) => (
-                            <div key={playlist.playlistId} className="song-row">
-                                <div className="song-number">{index + 1}</div>
-                                <div className="song-title">
-                                    <span>{playlist.playlistName}</span>
+                            <a key={playlist.playlistId} href={`/playlist/${playlist.playlistId}`} className="song-link">
+                                <div key={playlist.playlistId} className="song-row">
+                                    <div className="song-number">{index + 1}</div>
+                                    <div className="song-title">
+                                        <span>{playlist.playlistName}</span>
+                                    </div>
+                                    <div className="song-artist">
+                                        <span>{playlist.userName}</span>
+                                    </div>
+                                    <div className="song-duration">
+                                        <span>{playlist.duration}</span>
+                                    </div>
+                                    {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
+                                    {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
+                                    {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
                                 </div>
-                                <div className="song-artist">
-                                    <span>{playlist.userName}</span>
-                                </div>
-                                <div className="song-duration">
-                                    <span>{playlist.duration}</span>
-                                </div>
-                                {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
-                                {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
-                                {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
-                            </div>
+                            </a>
                         ))
                     )}
                 </div>

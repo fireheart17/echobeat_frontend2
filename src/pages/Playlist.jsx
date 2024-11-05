@@ -91,6 +91,7 @@ const Playlist = () => {
                         <p>Loading songs...</p>
                     ) : (
                         songs.map((song, index) => (
+                            <a key={song.trackId} href={`/player/${song.trackId}`} className="song-link">
                             <div key={song.trackId} className="song-row">
                                 <div className="song-number">{index + 1}</div>
                                 <div className="song-title">
@@ -106,6 +107,7 @@ const Playlist = () => {
                                 {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
                                 {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
                             </div>
+                            </a>
                         ))
                     )}
                 </div>
