@@ -26,7 +26,7 @@ const Song = () => {
                         const artistResponse = await fetch(`http://localhost:8081/api/getTrackArtists/${track.track_id}`);
                         // console.log(artistResponse);
                         const artistData = await artistResponse.json();
-                        console.log(artistData);
+                        console.log(artistData[0]);
                         // Assuming you want to display the first artist's name if multiple artists are returned
                         const artist_name = artistData.length > 0
                             ? `${artistData[0].artist_name}`

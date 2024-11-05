@@ -1,123 +1,117 @@
 import React, { useState } from 'react';
+import './SearchSong.css';
 
 const Search = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
+    handleSubmit(e);
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query) {
       onSearch(query);
-      // Don't clear the query so users can see what they searched for
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', justifyContent: 'center'}}>
+    <form onSubmit={handleSubmit} className="search-form">
       <input
         type="text"
         value={query}
         onChange={handleInputChange}
         placeholder="Search..."
-        style={{ padding: '10px', width: '250px', height: '30px', borderRadius: '4px', border: '1px solid #ccc' }}
+        className="search-input"
       />
-      <button 
-        type="submit" 
-        style={{backgroundColor: 'var(--color-100)', paddingRight: '10px', paddingLeft: '10px', marginLeft: '10px', height: '30px', borderRadius: '4px', cursor: 'pointer' }}
-      >
-        Search
-      </button>
     </form>
   );
 };
 
-const SearchBar = () => {
-    const [searchResults, setSearchResults] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+const SearchBar = (props) => {
+  const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [response, setResponse] = useState(null);
 
+  const handleClick = async (track_id) => {
+    const data = { playlist_id: props.playlist_id, track_id: track_id };
+    console.log("playlist : " + props.playlist_id);
+    console.log("track : " + track_id);
 
-    const handleSearch = async (query) => {
-      setIsLoading(true);
-      setError(null);
+    try {
+      const res = await fetch('http://localhost:8081/api/playlistsTracks/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-      try {
-        await new Promise(resolve => setTimeout(resolve, 500));
+      const result = res;
+      setResponse(result);
+      await props.fetchData();
+      console.log(result);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
-        console.log('query:', query);
+  const handleSearch = async (query) => {
+    setIsLoading(true);
+    setError(null);
 
-        const response = await fetch(`http://localhost:8081/api/tracks/search/${query}`);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setSearchResults(data);
+    try {
+      await new Promise(resolve => setTimeout(resolve, 500));
 
-      } catch (err) {
-        setError('No result Found!');
-      } finally {
-        setIsLoading(false);
+      console.log('query:', query);
+
+      const response = await fetch(`http://localhost:8081/api/tracks/search/${query}`);
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
       }
-    };
-  
-    return (
-      <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-        <Search onSearch={handleSearch} />
-        
-        {/* Loading State */}
-        {isLoading && (
-          <div style={{ textAlign: 'center', marginTop: '20px' }}>
-            Loading...
-          </div>
-        )}
+      const data = await response.json();
+      setSearchResults(data);
 
-        {/* Error State */}
-        {error && (
-          <div style={{ color: 'red', textAlign: 'center', marginTop: '20px' }}>
-            {error}
-          </div>
-        )}
+    } catch (err) {
+      setError('No result Found!');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-        {/* Results */}
-        {!isLoading && !error && searchResults.length > 0 && (
-          <div style={{ marginTop: '20px', padding: '20px', backgroundColor: '#f5f5f5', borderRadius: '8px' }}>
-            {/* <h3>Search Results:</h3> */}
-            <div style={{ display: 'grid', gap: '10px' }}>
-              {searchResults.map((result) => (
-                <div 
-                  key={result.track_name}
-                  style={{
-                    padding: '10px',
-                    backgroundColor:'var(--color-100)',
-                    borderRadius: '4px',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-                    fontSize: '14px',
-                  }}
-                >
-                  {/* Display different information based on the type of result */}
-                  {result.track_id && (
-                    <>
-                      <a style={{ fontWeight: 'bold', textDecoration:'none', color:'var(--color-200)'}} href='/'>{result.track_name}</a>
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+  return (
+    <div className="search-bar-container">
+      <Search onSearch={handleSearch} />
+      
+      {isLoading && <div className="loading-text">Loading...</div>}
 
-        {/* No Results State */}
-        {!isLoading && !error && Object.keys(searchResults).length === 0 && (
-          <div style={{ textAlign: 'center', marginTop: '20px', color: '#666' }}>
-            No results found.
+      {error && <div className="error-text">{error}</div>}
+
+      {!isLoading && !error && searchResults.length > 0 && (
+        <div className="search-results">
+          <div style={{ display: 'grid', gap: '10px' }}>
+            {searchResults.map((result) => (
+              <div 
+                key={result.track_name}
+                className="result-item"
+                onClick={() => handleClick(result.track_id)}
+              >
+                {result.track_id && (
+                  <div 
+                    className="result-item-title" 
+                  >
+                    {result.track_name}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-        )}
-      </div>
-    );
+        </div>
+      )}
+    </div>
+  );
 };
-  
+
 export default SearchBar;
