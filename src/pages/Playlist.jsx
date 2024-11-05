@@ -16,7 +16,7 @@ const Playlist = () => {
                 // Step 1: Fetch tracks for the playlist
                 const response = await fetch(`http://localhost:8081/api/playlistsTracks/playlist/${id}`);
                 const tracksData = await response.json();
-                // console.log(tracksData);
+                console.log(tracksData);
                 // Step 2: For each track, fetch artist details
                 const tracksWithArtists = await Promise.all(
                     tracksData.map(async (track) => {
