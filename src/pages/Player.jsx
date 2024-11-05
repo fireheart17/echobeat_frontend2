@@ -3,6 +3,7 @@ import "react-h5-audio-player/lib/styles.css";
 import { useParams } from "react-router-dom";
 import "./Player.css";
 import { useEffect, useState } from "react";
+import CheckAuth from "../components/CheckAuth";
 
 export default function Player() {
   const { id } = useParams();
@@ -21,6 +22,7 @@ export default function Player() {
 
   return (
     <>
+    <CheckAuth />
       <div className="track-wrapper">
         <div className="track-card">
           <div className="track-details">

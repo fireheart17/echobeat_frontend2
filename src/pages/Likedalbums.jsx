@@ -3,12 +3,47 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './Playlist.css';
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
    
 const Album = () => {
-    const { id } = useParams(); // Capture playlist ID from URL
+    // const { id } = useParams(); // Capture playlist ID from URL
     const [albums, setAlbums] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [id, setId] = useState([]);
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        if (Cookies.get("token") == null) navigate("/login")
+        const fetchData = async () => {
+            try {
+                const res = await fetch('http://localhost:8081/api/users/validate', {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${Cookies.get('token')}`,
+                    },
+                });
+
+                if (!res.ok) {
+                    // Handle non-200 status codes (optional)
+                    throw new Error('Failed to fetch user data');
+                }
+
+                const data = await res.json(); // The response body will be a simple integer (user_id)
+
+                // Assuming the API directly returns an integer user_id
+                if (Number.isInteger(data)) {
+                    setId(data); // Set the `id` state with the integer value returned
+                } else {
+                    console.error('Expected an integer user_id but received:', data);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData()
+    }, []);
+    
     // Fetch playlist data from the API and get artist details for each track
     useEffect(() => {
         const fetchPlaylistData = async () => {
