@@ -1,0 +1,67 @@
+/* Main search bar container */
+.searchbar-bar-container {
+    position: relative;
+    max-width: 400px; /* Adjust as needed */
+    margin: 0 auto;
+  }
+  
+  /* Form styling */
+  .searchbar-form {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Dropdown styling */
+  .searchbar-category-select {
+    background-color: var(--color-100);
+    border-radius: 2px;
+    height: 30px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  
+  /* Input styling */
+  .searchbar-input {
+    padding: 10px;
+    width: 250px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Button styling */
+  .searchbar-button {
+    background-color: var(--color-100);
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 10px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Search results container (Google-style dropdown) */
+  .searchbar-results {
+    position: absolute;
+    top: 50px; /* Adjust to be right below the search form */
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  /* Individual search result item */
+  .searchbar-result-item {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .searchbar-result-item:hover {
+    background-color: #f0f0f0;
+  }
+  

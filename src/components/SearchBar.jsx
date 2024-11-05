@@ -1,61 +1,80 @@
 import React, { useState } from 'react';
-const Search = ({ onSearch }) => {
+import './SearchBar.css';
+
+const SearchBar = () => {
   const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
   const [category, setCategory] = useState('songs'); // Default category
+  const [error, setError] = useState(null);
 
   const handleInputChange = (e) => {
-    setQuery(e.target.value);
+    const inputValue = e.target.value;
+    setQuery(inputValue);
   };
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    if (query) {
-      onSearch(query, category); // Pass both query and category to the parent component
-      setQuery(''); // Clear the input after search
+    if(category === 'songs') {
+      try {
+        await new Promise(resolve => setTimeout(resolve, 500));
+  
+        console.log('query:', query);
+  
+        const response = await fetch(`http://localhost:8081/api/tracks/search/${query}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setResults(data);
+  
+      } catch (err) {
+        setError('No result Found!');
+      }
     }
+    setQuery(''); // Clear the input after search
+    setResults([]); // Clear results after search
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', justifyContent: 'center'}}>
-      <select
-        value={category}
-        onChange={handleCategoryChange}
-        style={{ backgroundColor : 'var(--color-100)', borderRadius: '2px', height: '30px', border: '1px solid #ccc', marginRight: '10px' }}
-      >
-        <option value="songs">Songs</option>
-        <option value="albums">Albums</option>
-        <option value="artists">Artists</option>
-      </select>
-      <input
-        type="text"
-        value={query}
-        onChange={handleInputChange}
-        placeholder="Search..."
-        style={{ padding: '10px', width: '250px', height: '30px', borderRadius: '4px', border: '1px solid #ccc' }}
-      />
-      <button type="submit" style={{backgroundColor : 'var(--color-100)', paddingRight: '10px', paddingLeft: '10px', marginLeft: '10px', height: '30px', borderRadius: '4px', cursor: 'pointer' }}>
-        Search
-      </button>
-    </form>
+    <div className="searchbar-bar-container">
+      <form onSubmit={handleSubmit} className="searchbar-form">
+        <select
+          value={category}
+          onChange={handleCategoryChange}
+          className="searchbar-category-select"
+        >
+          <option value="songs">Songs</option>
+          <option value="albums">Albums</option>
+          <option value="artists">Artists</option>
+        </select>
+        <input
+          type="text"
+          value={query}
+          onChange={handleInputChange}
+          placeholder="Search..."
+          className="searchbar-input"
+        />
+        <button type="submit" className="searchbar-button">
+          Search
+        </button>
+      </form>
+
+      {/* Display search results dropdown */}
+      <p>{results.length}</p>
+      {results.length > 0 && (
+        <div className="searchbar-results">
+          {results.map((result) => (
+            <div key={result.track_id} className="searchbar-result-item">
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
-const SearchBar = () => {
-    const handleSearch = (query, category) => {
-      console.log(`Searching for ${query} in category: ${category}`);
-      // You can add your search logic here based on query and category
-    };
-  
-    return (
-      <div>
-        <Search onSearch={handleSearch} />
-        {/* Additional content can go here */}
-      </div>
-    );
-  };
-  
 export default SearchBar;
