@@ -1,37 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import  useSpotifyPlayer  from './useSpotifyPlayer';
-import Cookies from 'js-cookie'
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
+import { useParams } from "react-router-dom";
+import "./Player.css";
+import { useEffect, useState } from "react";
 
-const SpotifyWebPlayer = () => {
-    const accessToken = Cookies.get("spotify_token");
-  const trackId = "01zkbVsJQrtL1kwefeULG8";
-  const { player, isPlayerReady } = useSpotifyPlayer(accessToken);
+export default function Player() {
+  const { id } = useParams();
+  console.log(id);
+  const [track, setTrack] = useState({
+    track_name: "",
+    genre: "",
+    lyrics: "",
+    like_count: 0,
+    listen_count: 0,
+    track_id: "",
+  });
 
-  useEffect(() => {
-    if (isPlayerReady && player) {
-      player.connect().then(() => {
-        player.loadAndPlay(trackId);
-      });
-    }
-  }, [isPlayerReady, player, trackId]);
+  useEffect(()=>{
+    fetch(`http://localhost:8081/api/tracks/${id}`).then(res=>res.json()).then(track=>{setTrack(track)})
+  },[])
 
   return (
-    <div className="spotify-web-player">
-      {isPlayerReady ? (
-        <iframe
-          src={`https://open.spotify.com/embed/track/${trackId}`}
-          width="100%"
-          height="380"
-          frameBorder="0"
-          allowFullScreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          title="Spotify Web Player"
-        />
-      ) : (
-        <div>Loading Spotify Web Player...</div>
-      )}
-    </div>
+    <>
+      <div className="track-wrapper">
+        <div className="track-card">
+          <div className="track-details">
+            <div className="track-name">{track.track_name}</div>
+            <div className="track-genre">{track.genre}</div>
+          </div>
+          <div className="track-player">
+            <AudioPlayer
+              src={`http://localhost:8081/songs/track_${track.track_id}.mp3`}
+              style={{ borderRadius: "10px",backgroundColor:"var(--color-100)" }}
+            />
+          </div>
+          {/* <div className="track-lyrics"><span style={{whiteSpace:'pre',maxHeight:'200px',overflowY:'scroll',display:'block',overflowX:'hidden',fontStyle:'italic'}}>{track.lyrics || "Lyrics to this song are not available"}</span></div> */}
+        </div>
+      </div>
+    </>
   );
-};
-
-export default SpotifyWebPlayer;
+}

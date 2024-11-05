@@ -1,51 +1,115 @@
+// Playlist.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './PiyushChartstyles.css';
-import "./Likedsongs.css";
+import './Playlist.css';
+   
+const Podcast = () => {
+    const { id } = useParams(); // Capture playlist ID from URL
+    const [podcasts, setPodcast] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-const LikedPodcastsPage = () => {
-    const { userId } = useParams();  // Access userId from URL
-    const [likedPodcasts, setLikedPodcasts] = useState([]);
-
+    // Fetch playlist data from the API and get artist details for each track
     useEffect(() => {
-        const fetchLikedPodcasts = async () => {
+        const fetchPlaylistData = async () => {
             try {
-                const response = await fetch(`http://localhost:8081/api/likedPodcasts/userId/${userId}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                setLikedPodcasts(data);
+                // Step 1: Fetch tracks for the playlist
+                const response = await fetch(`http://localhost:8081/api/likedPodcasts/userId/${id}`);
+                const podcastsData = await response.json();
+                console.log(podcastsData);
+                // const response1 = await fetch(`http://localhost:8081/api/playlistsTracks/playlist/${id}`);
+                // const tracksDat = await response1.json();
+                // console.log(tracksDat);
+                // Step 2: For each track, fetch artist details
+                const podcastsWithArtists = await Promise.all(
+                    podcastsData.map(async (podcast) => {
+                        const artistResponse = await fetch(`http://localhost:8081/api/getPodcastArtists/${podcast.podcast_id}`);
+                        // console.log(artistResponse);
+                        const artistData = await artistResponse.json();
+                        console.log(artistData);
+                        // Assuming you want to display the first artist's name if multiple artists are returned
+                        const artist_name = artistData.length > 0
+                            ? `${artistData[0].artist_name}`
+                            : "Unknown Artist";
+
+                        return {
+                            podcastId: podcast.podcast_id,
+                            podcastName: podcast.podcast_name,
+                            artistName: artist_name,
+                            genre: podcast.genre,
+                        };
+                    })
+                );
+
+                // Update state with combined track and artist data
+                setPodcast(podcastsWithArtists);
             } catch (error) {
-                console.error('Error fetching liked podcasts:', error);
+                console.error("Error fetching playlist data:", error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
-        if (userId) {
-            fetchLikedPodcasts();
-        }
-    }, [userId]);  // Re-fetch if userId changes
+        fetchPlaylistData();
+    }, [id]);
+
+    // Function to handle playing all songs
+    // const playAllSongs = () => {
+    //     songs.forEach(song => playSong(song.trackId));
+    // };
+
+    // // Dummy functions to illustrate maintaining existing functionality
+    // const playSong = (trackId) => {
+    //     console.log(`Playing song with ID: ${trackId}`);
+    // };
+
+    // const likeSong = (trackId) => {
+    //     console.log(`Liking song with ID: ${trackId}`);
+    // };
+
+    // const addToQueue = (trackId) => {
+    //     console.log(`Adding song with ID: ${trackId} to queue`);
+    // };
 
     return (
-        <div>
-            {/* <Navbar /> */}
-            <div className="play-container">
-                <h1>Liked Podcasts</h1>
-                <div className="song-list-container">
-                    <ul>
-                        {likedPodcasts.map((podcast, index) => (
-                            <li
-                                key={index}
-                                onClick={() => window.location.href = `player.html?songId=${podcast.podcast_id}`}
-                            >
-                                <div>{podcast.podcast_name}</div>
-                            </li>
-                        ))}
-                    </ul>
+        <div className="playlist-container">
+            <h1>Liked Podcasts</h1>
+            <div className="action-buttons">
+                {/* <button className="play-all-btn" onClick={playAllSongs}>
+                    Play All
+                </button> */}
+            </div>
+            <div className="songs-container">
+                <div className="songs-header">
+                    <div>#</div>
+                    <div>Title</div>
+                    <div>Artist</div>
+                    <div className="header-duration">Genre</div>
                 </div>
+                {isLoading ? (
+                    <p>Loading Podcasts...</p>
+                ) : (
+                    podcasts.map((podcast, index) => (
+                        <div key={podcast.podcastId} className="song-row">
+                            <div className="song-number">{index + 1}</div>
+                            <div className="song-title">
+                                <span>{podcast.podcastName}</span>
+                            </div>
+                            <div className="song-artist">
+                                <span>{podcast.artistName}</span>
+                            </div>
+                            <div className="song-duration">
+                                <span>{podcast.genre}</span>
+                            </div>
+                            {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
+                            {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
+                            {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     );
 };
 
-export default LikedPodcastsPage;
+export default Podcast;
