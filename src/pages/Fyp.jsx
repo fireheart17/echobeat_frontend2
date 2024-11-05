@@ -29,7 +29,7 @@ const App = () => {
         
       }else{
         console.log("user not found");
-        navigate("/login");
+        navigate("/home");
       }
     }
     fetchData()
