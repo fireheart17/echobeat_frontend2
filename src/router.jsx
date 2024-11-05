@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
     element: <Likedsongs />,
   },
   {
-    path: "/likedplaylists/userId/:userId",
+    path: "/likedplaylists/userId/:id",
     element: <Likedplaylists />,
   },
   {
