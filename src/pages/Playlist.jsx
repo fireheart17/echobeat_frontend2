@@ -11,24 +11,23 @@ const Playlist = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     // Fetch playlist data from the API and get artist details for each track
-    useEffect(() => {
-        const fetchPlaylistData = async () => {
-            try {
-                // Step 1: Fetch tracks for the playlist
-                const response = await fetch(`http://localhost:8081/api/playlistsTracks/playlist/${id}`);
-                const tracksData = await response.json();
-                console.log(tracksData);
-                // Step 2: For each track, fetch artist details
-                const tracksWithArtists = await Promise.all(
-                    tracksData.map(async (track) => {
-                        const artistResponse = await fetch(`http://localhost:8081/api/getTrackArtists/${track.track_id}`);
-                        // console.log(artistResponse);
-                        const artistData = await artistResponse.json();
-                        console.log(artistData);
-                        // Assuming you want to display the first artist's name if multiple artists are returned
-                        const artist_name = artistData.length > 0
-                            ? `${artistData[0].first_name} ${artistData[0].last_name}`
-                            : "Unknown Artist";
+    const fetchPlaylistData = async () => {
+        try {
+            // Step 1: Fetch tracks for the playlist
+            const response = await fetch(`http://localhost:8081/api/playlistsTracks/playlist/${id}`);
+            const tracksData = await response.json();
+            // console.log(tracksData);
+            // Step 2: For each track, fetch artist details
+            const tracksWithArtists = await Promise.all(
+                tracksData.map(async (track) => {
+                    const artistResponse = await fetch(`http://localhost:8081/api/getTrackArtists/${track.track_id}`);
+                    // console.log(artistResponse);
+                    const artistData = await artistResponse.json();
+                    console.log(artistData);
+                    // Assuming you want to display the first artist's name if multiple artists are returned
+                    const artist_name = artistData.length > 0
+                        ? `${artistData[0].first_name} ${artistData[0].last_name}`
+                        : "Unknown Artist";
 
                     return {
                         trackId: track.track_id,
