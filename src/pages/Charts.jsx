@@ -47,7 +47,7 @@ const Charts = () => {
               className="card"
               onClick={() => (window.location.href = `/chart/${chart.chart_id}`)}
             >
-              <b>Chart name: {chart.chart_type}</b>
+              <b>{chart.chart_type}</b>
             </div>
           ))}
         </div>

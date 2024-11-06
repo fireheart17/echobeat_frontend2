@@ -66,11 +66,14 @@ const Podcast = () => {
                         const artist_name = artistData.length > 0
                             ? `${artistData[0].artist_name}`
                             : "Unknown Artist";
-
+                        const artist_id = artistData.length > 0
+                            ? `${artistData[0].artist_id}`
+                            : 0;
                         return {
                             podcastId: podcast.podcast_id,
                             podcastName: podcast.podcast_name,
                             artistName: artist_name,
+                            artistId: artist_id,
                             genre: podcast.genre,
                         };
                     })
@@ -134,7 +137,9 @@ const Podcast = () => {
                                         <span>{podcast.podcastName}</span>
                                     </div>
                                     <div className="song-artist">
+                                    <a key={podcast.podcastId} href={`/artist/${podcast.artistId}`} className="song-link">
                                         <span>{podcast.artistName}</span>
+                                    </a>
                                     </div>
                                     <div className="song-duration">
                                         <span>{podcast.genre}</span>
