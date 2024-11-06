@@ -26,7 +26,7 @@ const Song = () => {
             }
         };
         fetchData()
-    }, []);
+    }, [id]);
 
     // Fetch playlist data from the API and get artist details for each track
     useEffect(() => {
