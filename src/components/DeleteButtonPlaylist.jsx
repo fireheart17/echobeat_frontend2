@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './LikeButton.css';
+import './DeleteButton.css';
 
 const DeleteButtonPlaylist = (props) => {
     console.log("Playlist form button " + props.playlist_id);
@@ -31,9 +31,9 @@ const DeleteButtonPlaylist = (props) => {
   return (
     <button 
       onClick={onClickHandler}
-      className='likeButton'
+      className='DeleteButton'
     >
-      ➖
+        &#8722;
     </button>
   );
 };

@@ -63,7 +63,7 @@ const SearchBar = () => {
         setError('No result Found!');
       }
     }
-    else
+    else if(category == 'artists')
     {
       try {
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -77,6 +77,51 @@ const SearchBar = () => {
         const data = await response.json();
         setResults(data.map((result) => (
           <a key={result.artist_id} className="searchbar-result-item" href={`/artist/${result.artist_id}`} style={{textDecoration:'none',display:'block',overflow:'hidden',color:'black'}}>{result.artist_name}
+          </a>
+        )))
+        // setResults(data);
+        console.log(data);
+  
+      } catch (err) {
+        setError('No result Found!');
+      }
+    }
+    else if(category == 'playlists'){
+      try {
+        await new Promise(resolve => setTimeout(resolve, 500));
+  
+        console.log('query:', query);
+  
+        const response = await fetch(`http://localhost:8081/api/playlists/search/${query}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setResults(data.map((result) => (
+          <a key={result.artist_id} className="searchbar-result-item" href={`/playlist/${result.playlist_id}`} style={{textDecoration:'none',display:'block',overflow:'hidden',color:'black'}}>{result.title}
+          </a>
+        )))
+        // setResults(data);
+        console.log(data);
+  
+      } catch (err) {
+        setError('No result Found!');
+      }
+    }
+    else
+    {
+      try {
+        await new Promise(resolve => setTimeout(resolve, 500));
+  
+        console.log('query:', query);
+  
+        const response = await fetch(`http://localhost:8081/api/podcasts/search/${query}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setResults(data.map((result) => (
+          <a key={result.podcast_id} className="searchbar-result-item" href={`/player/${result.podcast_id}`} style={{textDecoration:'none',display:'block',overflow:'hidden',color:'black'}}>{result.podcast_name}
           </a>
         )))
         // setResults(data);
@@ -100,6 +145,8 @@ const SearchBar = () => {
           <option value="songs">Songs</option>
           <option value="albums">Albums</option>
           <option value="artists">Artists</option>
+          <option value="playlists">Playlists</option>
+          <option value="podcasts">Podcasts</option>
         </select>
         <input
           type="text"
