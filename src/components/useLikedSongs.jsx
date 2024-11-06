@@ -14,9 +14,11 @@ export default function useLikedSongs(){
             }
             }
         );
-        const res = await response.json();
-        // console.log("likedSongs " + res);
-        setLikedSongs(res)
+        if(response.status===200){
+            const res = await response.json();
+            // console.log("likedSongs " + res);
+            setLikedSongs(res)
+        }
     }
 
     useEffect(() => {

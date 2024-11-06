@@ -1,86 +1,73 @@
 import React, { useEffect, useState } from "react";
-import "./LikeButton.css";
 import Cookies from "js-cookie";
-import useLikedSongs from "./useLikedSongs";
+import "./FollowButton.css";
 
-const FollowButton = ({ track_id }) => {
-  const [user, setUser] = useState([]);
-  const [likedSongs, fetchLikedSongs] = useLikedSongs();
+const FollowButton = ({ artist_id,fetch_artist }) => {
+  const [userFollowsArtist,setUserFollowsArtist]=useState(false)
   const token = Cookies.get("token");
   console.log("token form button " + token);
-  console.log("track from button " + track_id);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("http://localhost:8081/api/users/validate", {
+  console.log("artist from button " + artist_id);
+  const checkFollower=async ()=>{
+    const res = await fetch(
+        `http://localhost:8081/api/checkfollower/${artist_id}`,
+        {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${Cookies.get("token")}`,
           },
-        });
-
-        if (!res.ok) {
-          // Handle non-200 status codes (optional)
-          throw new Error("Failed to fetch user data");
         }
-
-        const data = await res.json(); // The response body will be a simple integer (user_id)
-        if (Number.isInteger(data)) {
-          setUser(data); // Set the `id` state with the integer value returned
-        } else {
-          console.error("Expected an integer user_id but received:", data);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
+      );
+      const resText=await res.text();
+      setUserFollowsArtist(resText==="True");
+  }
+  useEffect(()=>{
+    checkFollower()
+  },[])
   const onClickHandler = async () => {
-    if (user && track_id) {
-      const data = { user_id: user, track_id: track_id };
-      console.log("User : " + user);
-      console.log("Track : " + track_id);
-      if (likedSongs.includes(track_id)) {
+
+      if (!userFollowsArtist) {
         try {
           const res = await fetch(
-            `http://localhost:8081/api/likedSongs/${user}/${track_id}`,
+            `http://localhost:8081/api/addfollower/${artist_id}`,
             {
-              method: "DELETE",
+              method: "GET",
               headers: {
-                "Content-Type": "application/json",
+                "Authorization": `Bearer ${Cookies.get("token")}`,
               },
-              body: JSON.stringify(data),
             }
           );
+        //   const resJSON=await res.json()
+        //   console.log(resJSON);
+
         } catch (error) {
-          console.error("Error in Deleting the liked song");
+          console.error("Error in adding follower");
         }
       } else {
         try {
-          const res = await fetch("http://localhost:8081/api/likedSongs", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          });
-        } catch (error) {
-          console.error("Error in Putting the liked song");
-        }
+            const res = await fetch(
+              `http://localhost:8081/api/followers/${artist_id}`,
+              {
+                method: "DELETE",
+                headers: {
+                  "Authorization": `Bearer ${Cookies.get("token")}`,
+                },
+              }
+            );
+          //   const resJSON=await res.json()
+          //   console.log(resJSON);
+  
+          } catch (error) {
+            console.error("Error in removing follower");
+          }
       }
-    } else {
-      console.warn("User or Track ID is missing!");
-    }
-    await fetchLikedSongs();
+      await checkFollower()
+      await fetch_artist()
   };
 
   return (
-    <div onClick={onClickHandler}>
-      <div className="like-button">
-        {likedSongs.includes(track_id) ? <>&#10084;</> : <>&#9825;</>}
-      </div>
-    </div>
+    <button className="follow-button" onClick={onClickHandler}>
+        {userFollowsArtist?"Following":"Follow"}
+    </button>
   );
 };
 
