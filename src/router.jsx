@@ -53,10 +53,10 @@ export const router = createBrowserRouter([
     path: "/test/:userId",
     element: <Test />,
   },
-  {
-    path: "/user/:id",
-    element: <User />,
-  },
+  // {
+  //   path: "/user/:id",
+  //   element: <User />,
+  // },
   {
     path: "/likedsongs",
     element: <Likedsongs />,
@@ -100,5 +100,9 @@ export const router = createBrowserRouter([
   {
     path : "/album/:id",
     element : <Album />,
+  },
+  {
+    path : "/user",
+    element : <User />,
   },
 ]);

@@ -1,162 +1,140 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './user_style.css';
 import Navbar from './../components/Navbar';
-import CheckAuth from "../components/CheckAuth";
+import Cookies from "js-cookie";
 
 const UserProfile = () => {
-    const [showForm, setShowForm] = useState(false);
-    const [userInfo, setUserInfo] = useState({
-        firstName: 'Janie',
-        lastName: 'Jones',
-        memberSince: 'April 26, 2015',
-        yearsListening: 3,
-        birthday: 'May 18, 1984',
-        hoursListened: '1,024 hours',
-        favoriteArtist: 'Adele',
-        favoriteGenre: 'Pop',
-        location: 'New York, NY'
-    });
+    // const [token, setToken] = useState("");
+    const [user, setUser] = useState(null);
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setUserInfo({
-            ...userInfo,
-            [name]: value,
-        });
-    };
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await fetch('http://localhost:8081/api/users/profile', {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${Cookies.get('token')}`,
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();  // Assuming the token is returned as plain text
+                console.log(data);
+                setUser(data);
+            } catch (error) {
+                console.error('Error fetching token:', error);
+            }
+        };
 
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        // Save changes or handle form submission logic here
-        setShowForm(false);
-    };
+        fetchUser();
+    }, []); 
+
+    // useEffect(() => {
+    //     const fetchUser = async () => {
+    //         if (token) {
+    //             try {
+    //                 const response = await fetch('http://localhost:8081/api/users/profile', {
+    //                     method: 'GET',
+    //                     headers: {
+    //                         'Authorization': `Bearer ${token}`,
+    //                         'Content-Type': 'application/json'
+    //                     }
+    //                 });
+
+    //                 if (!response.ok) {
+    //                     throw new Error('Failed to fetch user profile');
+    //                 }
+
+    //                 const userData = await response.json();
+    //                 setUser(userData);
+    //             } catch (error) {
+    //                 console.error('Error fetching user profile:', error);
+    //             }
+    //         }
+    //     };
+
+    //     fetchUser();
+    // }, [token]);
+
+    // console.log(user.first_name);
+
+    if (!user) {
+        console.log(user);
+        return <p>Loading...</p>;
+    }
 
     return (
-        <>
-            <CheckAuth />
-            <div>
-                <Navbar />
+        <div>
+            <Navbar />
 
-                <div className="profile-container">
-                    <div className="profile-header">
-                        <div className="profile-pic">
-                            {/* <img src="https://avatars.githubusercontent.com/u/118014773?v=4" alt="User Picture" /> */}
-                            <img src="http://localhost:8081/songs/cat.png" alt="User Picture" />
-                        </div>
-                        <div className="profile-info">
-                            <h1>{userInfo.firstName} {userInfo.lastName}</h1>
-                            <p><strong>Online:</strong> <span className="online-indicator">●</span></p>
-                            <button className="btn" onClick={() => setShowForm(true)}>Change User Information</button>
-                        </div>
+            <div className="profile-container">
+                <div className="profile-header">
+                    <div className="profile-pic">
+                        <img src="https://avatars.githubusercontent.com/u/118014773?v=4" alt="User Picture" />
                     </div>
-
-                    <div className="profile-stats">
-                        <div className="about-me">
-                            <h2>About Me</h2>
-                            <table className="info-table">
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Member since:</strong></td>
-                                        <td>{userInfo.memberSince}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Years Listening:</strong></td>
-                                        <td>{userInfo.yearsListening}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Birthday:</strong></td>
-                                        <td>{userInfo.birthday}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div className="my-stats">
-                            <h2>My Stats</h2>
-                            <table className="info-table">
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Hours Listened:</strong></td>
-                                        <td>{userInfo.hoursListened}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Favorite Artist:</strong></td>
-                                        <td>{userInfo.favoriteArtist}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Favorite Genre:</strong></td>
-                                        <td>{userInfo.favoriteGenre}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div className="profile-info">
+                        <h1>{user.first_name} {user.lastName}</h1>
+                        <p><strong>Online:</strong> <span className="online-indicator">●</span></p>
+                        {/* <button className="btn" >Change User Information</button> */}
+                        {/* <button className="btn" onClick={() => setShowForm(true)}>Change User Information</button> */}
                     </div>
-
-                    {showForm && (
-                        <div id="user-info-form" className="form-popup">
-                            <div className="form-container">
-                                <h2>Change User Information</h2>
-                                <form onSubmit={handleFormSubmit}>
-                                    <label htmlFor="firstName">First Name:</label>
-                                    <input
-                                        type="text"
-                                        id="firstName"
-                                        name="firstName"
-                                        value={userInfo.firstName}
-                                        onChange={handleInputChange}
-                                        required
-                                    />
-
-                                    <label htmlFor="lastName">Last Name:</label>
-                                    <input
-                                        type="text"
-                                        id="lastName"
-                                        name="lastName"
-                                        value={userInfo.lastName}
-                                        onChange={handleInputChange}
-                                        required
-                                    />
-
-                                    <label htmlFor="location">Location:</label>
-                                    <input
-                                        type="text"
-                                        id="location"
-                                        name="location"
-                                        value={userInfo.location}
-                                        onChange={handleInputChange}
-                                        required
-                                    />
-
-                                    <label htmlFor="favoriteArtist">Favorite Artist:</label>
-                                    <input
-                                        type="text"
-                                        id="favoriteArtist"
-                                        name="favoriteArtist"
-                                        value={userInfo.favoriteArtist}
-                                        onChange={handleInputChange}
-                                        required
-                                    />
-
-                                    <label htmlFor="favoriteGenre">Favorite Genre:</label>
-                                    <input
-                                        type="text"
-                                        id="favoriteGenre"
-                                        name="favoriteGenre"
-                                        value={userInfo.favoriteGenre}
-                                        onChange={handleInputChange}
-                                        required
-                                    />
-
-                                    <button type="submit" className="btn">Save Changes</button>
-                                    <button type="button" className="btn cancel" onClick={() => setShowForm(false)}>Close</button>
-                                </form>
-                            </div>
-                        </div>
-                    )}
                 </div>
+
+                <div className="profile-stats">
+                    <div className="about-me">
+                        <h2>About Me</h2>
+                        <table className="info-table">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Member since:</strong></td>
+                                    <td>April 26, 2015</td>
+                                    {/* <td>{userInfo.memberSince}</td> */}
+                                </tr>
+                                <tr>
+                                    <td><strong>Years Listening:</strong></td>
+                                    <td>3</td>
+                                    {/* <td>{userInfo.yearsListening}</td> */}
+                                </tr>
+                                <tr>
+                                    <td><strong>Birthday:</strong></td>
+                                    <td>May 18, 1984</td>
+                                    {/* <td>{userInfo.birthday}</td> */}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div className="my-stats">
+                        <h2>My Stats</h2>
+                        <table className="info-table">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Hours Listened:</strong></td>
+                                    <td>1,024 hours</td>
+                                    {/* <td>{userInfo.hoursListened}</td> */}
+                                </tr>
+                                <tr>
+                                    <td><strong>Favorite Artist:</strong></td>
+                                    <td>Adele</td>
+                                    {/* <td>{userInfo.favoriteArtist}</td> */}
+                                </tr>
+                                <tr>
+                                    <td><strong>Favorite Genre:</strong></td>
+                                    <td>Pop</td>
+                                    {/* <td>{userInfo.favoriteGenre}</td> */}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
-        </>
+        </div>
     );
 };
 
 export default UserProfile;
+
+// eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNzMwNzM2NDgwfQ.KxgW_xIIywmdN7qfrWkffcJok9jeZ1aaZl6U3ejqco8
