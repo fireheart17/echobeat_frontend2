@@ -133,7 +133,7 @@ const UserProfile = () => {
 
             </div>
             <Navbar />
-        </>
+        </div>
     );
 };
 
