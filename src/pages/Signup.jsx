@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./login_styles.css";
 import Cookies from "js-cookie"; // Importing js-cookie
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -163,6 +164,7 @@ const Signup = () => {
         </div>
       </div> */}
       </div>
+      <Navbar />
     </div>
   );
 };

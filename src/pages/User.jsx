@@ -38,6 +38,7 @@ const UserProfile = () => {
                 <Navbar />
 
                 <div className="profile-container">
+                <div className="spacer" style={{height:'60px'}}></div>
                     <div className="profile-header">
                         <div className="profile-pic">
                             {/* <img src="https://avatars.githubusercontent.com/u/118014773?v=4" alt="User Picture" /> */}
@@ -155,6 +156,7 @@ const UserProfile = () => {
                     )}
                 </div>
             </div>
+            <Navbar />
         </>
     );
 };

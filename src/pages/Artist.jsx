@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import "./artist_styles.css";
 import CheckAuth from "../components/CheckAuth";
+import Navbar from '../components/Navbar';
 
 const ArtistProfile = () => {
     const { artistId } = useParams();  // Access artistId from URL
@@ -81,6 +82,7 @@ const ArtistProfile = () => {
                 </header>
 
                 <section className="profile-section">
+                <div className="spacer" style={{height:'60px'}}></div>
                     <div className="profile-container">
                         <div className="profile-info">
                             <img
@@ -171,6 +173,7 @@ const ArtistProfile = () => {
 
 
             </div>
+            <Navbar />
         </>
     );
 };

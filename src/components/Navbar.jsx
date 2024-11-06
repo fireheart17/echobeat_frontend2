@@ -20,7 +20,7 @@ const Navbar = () => {
           backgroundColor: "rgb(175, 154, 122)",
           color: "white",
           padding: "0.5rem",
-          transition: "all 1s",
+          // transition: "all 1s",
           borderRadius: isExpanded ? "10px" : "50%",
           width: isExpanded ? "95%" : "3rem",
           height: "48px",

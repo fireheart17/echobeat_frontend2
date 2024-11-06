@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import CheckAuth from "../components/CheckAuth";
 import useLikedSongs from "../components/useLikedSongs";
 import LikeButton from "../components/LikeButton";
+import Navbar from "../components/Navbar";
 
 export default function Player() {
   const { id } = useParams();
@@ -40,6 +41,7 @@ export default function Player() {
           {/* <div className="track-lyrics"><span style={{whiteSpace:'pre',maxHeight:'200px',overflowY:'scroll',display:'block',overflowX:'hidden',fontStyle:'italic'}}>{track.lyrics || "Lyrics to this song are not available"}</span></div> */}
         </div>
       </div>
+      <Navbar />
     </>
   );
 }

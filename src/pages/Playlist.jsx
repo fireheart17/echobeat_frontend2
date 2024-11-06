@@ -6,6 +6,7 @@ import './Playlist.css';
 import SearchSongs from '../components/SearchSongs';
 import CheckAuth from "../components/CheckAuth";
 import useLikedSongs from '../components/useLikedSongs';
+import Navbar from '../components/Navbar';
 
 
 const Playlist = () => {
@@ -76,6 +77,7 @@ const Playlist = () => {
         <>
             <CheckAuth />
             <div className="playlist-container">
+            <div className="spacer" style={{height:'60px'}}></div>
                 <h1>{playlist.title}</h1>
                 <div className="action-buttons">
                     {/* <button className="play-all-btn" onClick={playAllSongs}>
@@ -121,6 +123,7 @@ const Playlist = () => {
 
                 <div style={{ marginTop: '40px' }}><SearchSongs playlist_id={id} fetchData={fetchPlaylistData} /></div>
             </div>
+            <Navbar />
         </>
     );
 };
