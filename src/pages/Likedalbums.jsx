@@ -66,11 +66,14 @@ const Album = () => {
                         const artist_name = artistData.length > 0
                             ? `${artistData[0].artist_name}`
                             : "Unknown Artist";
-
+                        const artist_id = artistData.length > 0
+                            ? `${artistData[0].artist_id}`
+                            : 0;
                         return {
                             albumId: album.album_id,
                             albumName: album.title,
                             artistName: artist_name,
+                            artistId: artist_id,
                             genre: album.genre,
                         };
                     })
@@ -127,21 +130,25 @@ const Album = () => {
                         <p>Loading albums...</p>
                     ) : (
                         albums.map((album, index) => (
-                            <div key={album.albumId} className="song-row">
-                                <div className="song-number">{index + 1}</div>
-                                <div className="song-title">
-                                    <span>{album.albumName}</span>
+                            <a key={album.albumId} href={`/album/${album.albumId}`} className="song-link">
+                                <div key={album.albumId} className="song-row">
+                                    <div className="song-number">{index + 1}</div>
+                                    <div className="song-title">
+                                        <span>{album.albumName}</span>
+                                    </div>
+                                    <div className="song-artist">
+                                        <a key={album.albumId} href={`/artist/${album.artistId}`} className="song-link">
+                                            <span>{album.artistName}</span>
+                                        </a>
+                                    </div>
+                                    <div className="song-duration">
+                                        <span>{album.genre}</span>
+                                    </div>
+                                    {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
+                                    {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
+                                    {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
                                 </div>
-                                <div className="song-artist">
-                                    <span>{album.artistName}</span>
-                                </div>
-                                <div className="song-duration">
-                                    <span>{album.genre}</span>
-                                </div>
-                                {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
-                                {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
-                                {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
-                            </div>
+                            </a>
                         ))
                     )}
                 </div>

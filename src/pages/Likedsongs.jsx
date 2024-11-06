@@ -137,11 +137,11 @@ const Song = () => {
                                     <div className="song-title">
                                         <span>{song.trackName}</span>
                                     </div>
-                                    <a key={song.trackId} href={`/artist/${song.artistId}`} className="song-link">
-                                        <div className="song-artist">
+                                    <div className="song-artist">
+                                        <a key={song.trackId} href={`/artist/${song.artistId}`} className="song-link">
                                             <span>{song.artistName}</span>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                     <div className="song-duration">
                                         <span>{song.genre}</span>
                                     </div>
