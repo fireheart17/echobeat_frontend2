@@ -13,6 +13,7 @@
 	padding:10px 10px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
+	width: 50px;
 }
 .likeButton:hover {
 	background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);

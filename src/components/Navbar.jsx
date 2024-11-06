@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import QuickLinks from "./QuickLinks";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -39,7 +40,9 @@ const Navbar = () => {
           Echobeat
         </div>
         {isExpanded && (
+  
           <div style={{ display: "flex", gap: "1rem", marginRight: "1rem" }}>
+            <SearchBar />
             <QuickLinks />
             <a href="/" style={{ textDecoration: "none", color: "white" }}>
               Home

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './LikeButton.css';
+import Cookies from "js-cookie";
 
-const LikeButton = ({ token, track_id}) => {
+const LikeButton = ({track_id}) => {
 const [user, setUser] = useState([]);
+    const token = Cookies.get("token")
     console.log("token form button " + token);
     console.log("track from button " + track_id);
     useEffect(() => {

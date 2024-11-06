@@ -14,6 +14,7 @@ const SearchBar = () => {
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
+    setResults(<></>)
   };
 
   const handleSubmit = async(e) => {
@@ -29,14 +30,63 @@ const SearchBar = () => {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setResults(data);
+        setResults(data.map((result) => (
+          <a key={result.track_id} className="searchbar-result-item" href={`/player/${result.track_id}`} style={{textDecoration:'none',display:'block',overflow:'hidden',color:'black'}}>{result.track_name}
+          </a>
+        )))
+        // setResults(data);
+        console.log(data);
   
       } catch (err) {
         setError('No result Found!');
       }
     }
-    setQuery(''); // Clear the input after search
-    setResults([]); // Clear results after search
+    else if(category == 'albums'){
+      try {
+        await new Promise(resolve => setTimeout(resolve, 500));
+  
+        console.log('query:', query);
+  
+        const response = await fetch(`http://localhost:8081/api/albums/search/${query}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setResults(data.map((result) => (
+          <a key={result.album_id} className="searchbar-result-item" href={`/albums/${result.album_id}`} style={{textDecoration:'none',display:'block',overflow:'hidden',color:'black'}}>{result.title}
+          </a>
+        )))
+        // setResults(data);
+        console.log(data);
+  
+      } catch (err) {
+        setError('No result Found!');
+      }
+    }
+    else
+    {
+      try {
+        await new Promise(resolve => setTimeout(resolve, 500));
+  
+        console.log('query:', query);
+  
+        const response = await fetch(`http://localhost:8081/api/artists/search/${query}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setResults(data.map((result) => (
+          <a key={result.artist_id} className="searchbar-result-item" href={`/artist/${result.artist_id}`} style={{textDecoration:'none',display:'block',overflow:'hidden',color:'black'}}>{result.artist_name}
+          </a>
+        )))
+        // setResults(data);
+        console.log(data);
+  
+      } catch (err) {
+        setError('No result Found!');
+      }
+    }
+
   };
 
   return (
@@ -64,13 +114,9 @@ const SearchBar = () => {
       </form>
 
       {/* Display search results dropdown */}
-      <p>{results.length}</p>
       {results.length > 0 && (
         <div className="searchbar-results">
-          {results.map((result) => (
-            <div key={result.track_id} className="searchbar-result-item">
-            </div>
-          ))}
+          {results}
         </div>
       )}
     </div>
