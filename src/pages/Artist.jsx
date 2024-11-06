@@ -127,49 +127,49 @@ const ArtistProfile = () => {
                                 </li>
                             </ul>
                         </div>
+                    {activeSection === 'overview' && (
+                        <section className="about-section" id="overview">
+                            <h3>{`About ${artist?.first_name}`}</h3>
+                            <div className="about-container">{artist?.about}</div>
+                        </section>
+                    )}
+
+                    {activeSection === 'songs' && (
+                        <section id="songs">
+                            <div className="song-list-container">
+                                <ul id="songList">
+                                    {tracks?.map((track, index) => (
+                                        <a key={track.track_id} href={`/player/${track.track_id}`} className="song-link">
+                                        <li key={index} className="song">
+                                            <div>{track?.track_name}</div>
+                                        </li>
+                                        </a>
+                                    ))}
+                                </ul>
+                            </div>
+                        </section>
+                    )}
+
+                    {activeSection === 'albums' && (
+                        <section id="albums">
+                            <div className="album-list-container">
+                                <ul id="albumList">
+                                    {albums?.map((album, index) => (
+                                        <li key={index} className="album">
+                                            <a href={`/albums/${album.id}`} className="nlink">
+                                                <div>{album?.title}</div>
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </section>
+                    )}
                     </div>
                 </section>
 
-                {activeSection === 'overview' && (
-                    <section className="about-section" id="overview">
-                        <h3>{`About ${artist?.first_name}`}</h3>
-                        <div className="about-container">{artist?.about}</div>
-                    </section>
-                )}
 
-                {activeSection === 'songs' && (
-                    <section id="songs">
-                        <div className="song-list-container">
-                            <ul id="songList">
-                                {tracks?.map((track, index) => (
-                                    <li key={index} className="song">
-                                        <div>{track?.track_name}</div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </section>
-                )}
 
-                {activeSection === 'albums' && (
-                    <section id="albums">
-                        <div className="album-list-container">
-                            <ul id="albumList">
-                                {albums?.map((album, index) => (
-                                    <li key={index} className="album">
-                                        <a href={`/albums/${album.id}`} className="nlink">
-                                            <div>{album?.title}</div>
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </section>
-                )}
-
-                <footer>
-                    <p>&copy; 2024 EchoBeat</p>
-                </footer>
             </div>
         </>
     );
