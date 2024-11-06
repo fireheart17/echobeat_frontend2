@@ -47,8 +47,8 @@ const Navbar = () => {
             <a href="/" style={{ textDecoration: "none", color: "white" }}>
               Home
             </a>
-            <a href="/" style={{ textDecoration: "none", color: "white" }}>
-              About
+            <a href="/charts" style={{ textDecoration: "none", color: "white" }}>
+              Charts
             </a>
             <a href="/logout" style={{ textDecoration: "none", color: "white" }}>
               logout
