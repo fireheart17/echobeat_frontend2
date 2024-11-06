@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import './Playlist.css';
 import SearchSongs from '../components/SearchSongs';
 import CheckAuth from "../components/CheckAuth";
-import LikeButton from '../components/LikeButton';
+import DeleteButtonPlaylist from '../components/DeleteButtonPlaylist';
 import Cookies from 'js-cookie'
 
 const Playlist = () => {
@@ -128,6 +128,7 @@ const Playlist = () => {
                                 </div>
                                 <div style = {{marginLeft:'40%'}}> 
                                 {likedSongs.includes(song.trackId) && <>&#10084;</>}
+                                <DeleteButtonPlaylist playlist_id={id} track_id = {song.trackId} fetchData={fetchPlaylistData}/>
                                  </div>
                                 {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
                                 {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
