@@ -19,13 +19,14 @@ const HomePage = () => {
                     <h1 className="app-name">EchoBeat</h1>
                 </header>
                 <main className="main-content">
-                    <h2 className="tagline">"Experience Music Like Never Before"</h2>
-                    <p className="description">
-                        Discover, listen, and share music from around the world with the best personalized music experience.
-                    </p>
                     <button className="get-started-btn" onClick={handleGetStarted}>
                         Get Started
                     </button>
+                    <div className="home-circle"></div>
+                    <p className="description">
+                        Discover, listen, and share music from around the world with the best personalized music experience.
+                    </p>
+                    <h2 className="tagline">"Experience Music Like Never Before"</h2>
                 </main>
             </div>
         </>
