@@ -53,7 +53,7 @@ const SearchBar = () => {
         }
         const data = await response.json();
         setResults(data.map((result) => (
-          <a key={result.album_id} className="searchbar-result-item" href={`/albums/${result.album_id}`} style={{textDecoration:'none',display:'block',overflow:'hidden',color:'black'}}>{result.title}
+          <a key={result.album_id} className="searchbar-result-item" href={`/album/${result.album_id}`} style={{textDecoration:'none',display:'block',overflow:'hidden',color:'black'}}>{result.title}
           </a>
         )))
         // setResults(data);
