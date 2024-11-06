@@ -16,10 +16,10 @@ function QuickLinks() {
       </div>
       {isOpen && (
         <div className="dropdown-menu">
-          <a href="#item1" className="dropdown-item">Liked Songs</a>
-          <a href="#item2" className="dropdown-item">Liked Playlists</a>
-          <a href="#item3" className="dropdown-item">Liked Podcasts</a>
-          <a href="#item4" className="dropdown-item">Liked Albums</a>
+          <a href="/likedsongs" className="dropdown-item">Liked Songs</a>
+          <a href="/likedplaylists" className="dropdown-item">Liked Playlists</a>
+          <a href="/likedpodcasts" className="dropdown-item">Liked Podcasts</a>
+          <a href="/likedalbums" className="dropdown-item">Liked Albums</a>
         </div>
       )}
     </div>
