@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import './Playlist.css';
 import SearchSongs from '../components/SearchSongs';
 import CheckAuth from "../components/CheckAuth";
+import LikeButton from '../components/LikeButton';
 
 const Playlist = () => {
     const { id } = useParams(); // Capture playlist ID from URL
@@ -123,6 +124,7 @@ const Playlist = () => {
                                 <div className="song-duration">
                                     <span>{song.duration}</span>
                                 </div>
+                                <div style = {{marginLeft:'40%'}}> <LikeButton track_id={song.trackId}/> </div>
                                 {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
                                 {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
                                 {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}

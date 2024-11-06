@@ -1,8 +1,12 @@
-/* body {
-    background-color: whitesmoke;
-    font-family: Arial, sans-serif;
-    margin-left: 60px;
-} */
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: whitesmoke; /* Spotify Dark Theme */
+    color: white;
+    margin: 0;
+    padding: 0;
+    
+}
 
 .h1-charts {
     color: rgb(71, 61, 46); /* Spotify Green */
@@ -11,12 +15,47 @@
 }
 
 .h2-charts {
-    color: var(--color-200)
+    color: rgb(175, 154, 122);
 }
 
 .p-charts {
     color: #B3B3B3;
 }
+
+/* Charts Page (cards) */
+.charts-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 50px;
+    text-align: center;
+}
+
+.card {
+    background-color: var(--color-400);
+    margin: 20px auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+
+    background-color: var(--color-100);
+}
+.card:hover p {
+    color: var(--color-400); /* Or any other color you prefer */
+}
+
+.card h2 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-top: 0;
+}
+
 /* Song List Styles */
 .song-list-container {
     max-width: 800px;
@@ -32,7 +71,6 @@
 .li-charts {
     background-color: var(--color-400); 
     padding: 15px;
-    padding-left: 5%;
     margin: 10px 0;
     border-radius: 10px;
     cursor: pointer;
