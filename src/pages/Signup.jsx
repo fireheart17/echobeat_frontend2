@@ -164,7 +164,6 @@ const Signup = () => {
         </div>
       </div> */}
       </div>
-      <Navbar />
     </div>
   );
 };
