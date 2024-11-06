@@ -67,9 +67,10 @@ const UserProfile = () => {
 
     return (
         <div>
-            <Navbar />
+            
 
             <div className="profile-container">
+            <div className="spacer" style={{height:'60px'}}></div>
                 <div className="profile-header">
                     <div className="profile-pic">
                         <img src="https://avatars.githubusercontent.com/u/118014773?v=4" alt="User Picture" />
@@ -77,8 +78,6 @@ const UserProfile = () => {
                     <div className="profile-info">
                         <h1>{user.firstName} {user.lastName}</h1>
                         <p><strong>Online:</strong> <span className="online-indicator">●</span></p>
-                        <button className="btn" >Change User Information</button>
-                        {/* <button className="btn" onClick={() => setShowForm(true)}>Change User Information</button> */}
                     </div>
                 </div>
 
@@ -131,10 +130,9 @@ const UserProfile = () => {
                 </div>
 
             </div>
+            <Navbar />
         </div>
     );
 };
 
 export default UserProfile;
-
-// eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNzMwNzM2NDgwfQ.KxgW_xIIywmdN7qfrWkffcJok9jeZ1aaZl6U3ejqco8
