@@ -9,48 +9,31 @@ import CheckAuth from "../components/CheckAuth";
 
 
 const Song = () => {
-    // const { id } = useParams(); // Capture playlist ID from URL
+    const { id } = useParams(); // Capture playlist ID from URL
+    const [album, setAlbum] = useState([]);
     const [songs, setSongs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [id, setId] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('http://localhost:8081/api/users/validate', {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${Cookies.get('token')}`,
-                    },
-                });
-
-                if (!res.ok) {
-                    // Handle non-200 status codes (optional)
-                    throw new Error('Failed to fetch user data');
-                }
-
-                const data = await res.json(); // The response body will be a simple integer (user_id)
-
-                // Assuming the API directly returns an integer user_id
-                if (Number.isInteger(data)) {
-                    setId(data); // Set the `id` state with the integer value returned
-                } else {
-                    console.error('Expected an integer user_id but received:', data);
-                }
+                const response = await fetch(`http://localhost:8081/api/albums/${id}`);
+                const album = await response.json();
+                setAlbum(album);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
         fetchData()
-    }, []);
+    }, [id]);
 
     // Fetch playlist data from the API and get artist details for each track
     useEffect(() => {
         const fetchPlaylistData = async () => {
             try {
                 // Step 1: Fetch tracks for the playlist
-                const response = await fetch(`http://localhost:8081/api/likedSongs/userId/${id}`);
+                const response = await fetch(`http://localhost:8081/api/album/${id}`);
                 const tracksData = await response.json();
                 console.log(tracksData);
                 // const response1 = await fetch(`http://localhost:8081/api/playlistsTracks/playlist/${id}`);
@@ -60,7 +43,7 @@ const Song = () => {
                 const tracksWithArtists = await Promise.all(
                     tracksData.map(async (track) => {
                         const artistResponse = await fetch(`http://localhost:8081/api/getTrackArtists/${track.track_id}`);
-                        // console.log(artistResponse);
+                        console.log("here");
                         const artistData = await artistResponse.json();
                         console.log(artistData[0]);
                         // Assuming you want to display the first artist's name if multiple artists are returned
@@ -114,7 +97,7 @@ const Song = () => {
         <>
             <CheckAuth />
             <div className="playlist-container">
-                <h1>Liked Songs</h1>
+                <h1>{album.title}</h1>
                 <div className="action-buttons">
                     {/* <button className="play-all-btn" onClick={playAllSongs}>
                     Play All

@@ -9,7 +9,21 @@ import CheckAuth from "../components/CheckAuth";
 const Playlist = () => {
     const { id } = useParams(); // Capture playlist ID from URL
     const [songs, setSongs] = useState([]);
+    const [playlist, setPlaylist] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8081/api/playlists/${id}`);
+                const playlist = await response.json();
+                setPlaylist(playlist);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData()
+    }, [id]);
 
     // Fetch playlist data from the API and get artist details for each track
     const fetchPlaylistData = async () => {
@@ -17,7 +31,7 @@ const Playlist = () => {
             // Step 1: Fetch tracks for the playlist
             const response = await fetch(`http://localhost:8081/api/playlistsTracks/playlist/${id}`);
             const tracksData = await response.json();
-            // console.log(tracksData);
+            console.log("here " + tracksData);
             // Step 2: For each track, fetch artist details
             const tracksWithArtists = await Promise.all(
                 tracksData.map(async (track) => {
@@ -27,13 +41,16 @@ const Playlist = () => {
                     console.log(artistData);
                     // Assuming you want to display the first artist's name if multiple artists are returned
                     const artist_name = artistData.length > 0
-                        ? `${artistData[0].first_name} ${artistData[0].last_name}`
+                        ? `${artistData[0].artist_name}`
                         : "Unknown Artist";
-
+                    const artist_id = artistData.length > 0
+                        ? `${artistData[0].artist_id}`
+                        : 0;
                     return {
                         trackId: track.track_id,
                         trackName: track.track_name,
                         artistName: artist_name,
+                        artistId: artist_id,
                         duration: track.duration,
                     };
                 })
@@ -74,11 +91,11 @@ const Playlist = () => {
         <>
             <CheckAuth />
             <div className="playlist-container">
-                <h1>Playlist</h1>
+                <h1>{playlist.title}</h1>
                 <div className="action-buttons">
-                    <button className="play-all-btn" onClick={playAllSongs}>
+                    {/* <button className="play-all-btn" onClick={playAllSongs}>
                         Play All
-                    </button>
+                    </button> */}
                 </div>
                 <div className="songs-container">
                     <div className="songs-header">
@@ -91,14 +108,17 @@ const Playlist = () => {
                         <p>Loading songs...</p>
                     ) : (
                         songs.map((song, index) => (
-                            <a key={song.trackId} href={`/player/${song.trackId}`} className="song-link">
                             <div key={song.trackId} className="song-row">
                                 <div className="song-number">{index + 1}</div>
-                                <div className="song-title">
-                                    <span>{song.trackName}</span>
-                                </div>
+                                <a key={song.trackId} href={`/player/${song.trackId}`} className="song-link">
+                                    <div className="song-title">
+                                        <span>{song.trackName}</span>
+                                    </div>
+                                </a>
                                 <div className="song-artist">
-                                    <span>{song.artistName}</span>
+                                    <a key={song.trackId} href={`/artist/${song.artistId}`} className="song-link">
+                                        <span>{song.artistName}</span>
+                                    </a>
                                 </div>
                                 <div className="song-duration">
                                     <span>{song.duration}</span>
@@ -107,7 +127,6 @@ const Playlist = () => {
                                 {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
                                 {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
                             </div>
-                            </a>
                         ))
                     )}
                 </div>

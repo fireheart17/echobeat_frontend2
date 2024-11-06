@@ -18,6 +18,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import HomePage from "./pages/HomePage";
 import Demo from "./pages/Demo";
+import Album from "./pages/Album";
 
 export const router = createBrowserRouter([
   {
@@ -95,5 +96,9 @@ export const router = createBrowserRouter([
   {
     path : "/demo",
     element : <Demo />,
+  },
+  {
+    path : "/album/:id",
+    element : <Album />,
   },
 ]);
