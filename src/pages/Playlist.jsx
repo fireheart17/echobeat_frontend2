@@ -5,15 +5,15 @@ import { useParams } from 'react-router-dom';
 import './Playlist.css';
 import SearchSongs from '../components/SearchSongs';
 import CheckAuth from "../components/CheckAuth";
-import LikeButton from '../components/LikeButton';
-import Cookies from 'js-cookie'
+import useLikedSongs from '../components/useLikedSongs';
+
 
 const Playlist = () => {
     const { id } = useParams(); // Capture playlist ID from URL
     const [songs, setSongs] = useState([]);
     const [playlist, setPlaylist] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [likedSongs,setLikedSongs] = useState([]);
+    const [likedSongs,fetchLikedSongs] = useLikedSongs()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -71,24 +71,6 @@ const Playlist = () => {
     useEffect(() => {
         fetchPlaylistData().then(res => { console.log(res) });
     }, [id]);
-
-    const fetchLikedSongs=async ()=>{
-        const response = await fetch(`http://localhost:8081/api/likedSongsFromToken`,
-            {
-                method:"GET",
-            headers:{
-              Authorization:`Bearer ${Cookies.get("token")}`
-            }
-            }
-        );
-        const res = await response.json();
-        // console.log("likedSongs " + res);
-        setLikedSongs(res)
-    }
-
-    useEffect(() => {
-        fetchLikedSongs().then(res => { console.log(res) });
-    }, []);
 
     return (
         <>

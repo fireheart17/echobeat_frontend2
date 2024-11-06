@@ -29,6 +29,7 @@
 .track-name{
     font-weight:700;
     font-size:20px;
+    display:flex;
 }
 
 .track-description{

@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import "./Player.css";
 import { useEffect, useState } from "react";
 import CheckAuth from "../components/CheckAuth";
+import useLikedSongs from "../components/useLikedSongs";
+import LikeButton from "../components/LikeButton";
 
 export default function Player() {
   const { id } = useParams();
@@ -26,7 +28,7 @@ export default function Player() {
       <div className="track-wrapper">
         <div className="track-card">
           <div className="track-details">
-            <div className="track-name">{track.track_name}</div>
+            <div className="track-name">{track.track_name} <LikeButton track_id={track.track_id}/></div>
             <div className="track-genre">{track.genre}</div>
           </div>
           <div className="track-player">
