@@ -5,6 +5,7 @@ import LikeButton from '../components/LikeButton';
 import SearchBar from '../components/SearchBar';
 import DeleteButton from '../components/DeleteButton';
 import LikeButtonPlaylist from '../components/LikeButtonPlaylist';
+import LikeButtonAlbum from '../components/LikeButtonAlbum';
 import Cookies from "js-cookie";
 
 const Demo = () => {
@@ -14,7 +15,7 @@ const Demo = () => {
     // const token = Cookies.get("token");
     // console.log(token);
     return (
-        <LikeButtonPlaylist playlist_id={1}/>
+        <LikeButtonAlbum album_id={1}/>
     );
 };
 
