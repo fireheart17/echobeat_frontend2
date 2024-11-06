@@ -11,7 +11,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    color: #7f6b5b; /* Light brown text */
+    /* color: #7f6b5b; */
     text-align: center;
 }
 
@@ -19,29 +19,64 @@ body {
     position: absolute;
     top: 20px;
     left: 20px;
+    overflow:hidden;
 }
 
 .app-name {
     font-size: 2.5rem;
-    color: #7f6b5b;
+    color: #eae4db;
+}
+
+.home-container:before{
+    content:"";
+    border-radius:1000px;
+    display:block;
+    height:600px;
+    width:600px;
+    background:var(--color-200);
+    position:absolute;
+    top:0px;
+    left:0;
+    z-index:-1;
+    transform:translate(-35%,-50%);
+}
+
+.home-circle{
+    border-radius:1000px;
+    display:block;
+    /* width:600px; */
+    width:0px;
+    aspect-ratio:1;
+    background:var(--color-200);
+    position:absolute;
+    z-index:-1;
+    top:100px;
+    left:300px;
+    transition:1s;
 }
 
 .main-content {
     max-width: 600px;
     padding: 20px;
+    position:relative;
+    display:flex;
+    flex-direction:column-reverse;
+    align-items:center;
 }
 
 .tagline {
     font-size: 2rem;
     font-weight: bold;
-    color: #a68b73; /* Matching the color scheme */
+    color: #a68b73; 
     margin-bottom: 10px;
+    transition:1s;
 }
 
 .description {
     font-size: 1.2rem;
     color: #7f6b5b;
     margin-bottom: 40px;
+    transition:1s;
 }
 
 .get-started-btn {
@@ -53,8 +88,22 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    width:200px;
 }
 
 .get-started-btn:hover {
     background-color: #7f6b5b; /* Darker on hover */
+}
+
+.get-started-btn:hover ~ .home-circle {
+    width:600px;
+    left:0;
+    top:-200px;
+}
+
+.get-started-btn:hover ~ .tagline {
+    color:#eae4db;
+}
+.get-started-btn:hover ~ .description {
+    color:#eae4db;
 }

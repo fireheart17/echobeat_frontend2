@@ -40,6 +40,7 @@ const Charts = () => {
         <Navbar /> {/* Assuming Navbar is a separate React component */}
 
         <div className="charts-container">
+        <div className="spacer" style={{height:'60px'}}></div>
           <h1 className='h1-charts'>Top Charts</h1>
           {charts.map((chart) => (
             <div
@@ -52,6 +53,7 @@ const Charts = () => {
           ))}
         </div>
       </div>
+      <Navbar />
     </>
   );
 };

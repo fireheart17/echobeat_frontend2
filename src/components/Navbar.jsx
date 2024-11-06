@@ -20,7 +20,7 @@ const Navbar = () => {
           backgroundColor: "rgb(175, 154, 122)",
           color: "white",
           padding: "0.5rem",
-          transition: "all 1s",
+          // transition: "all 1s",
           borderRadius: isExpanded ? "10px" : "50%",
           width: isExpanded ? "95%" : "3rem",
           height: "48px",
@@ -30,18 +30,22 @@ const Navbar = () => {
           // overflow: "hidden",
         }}
       >
-        <div
+        <a
           style={{
             fontWeight: "bold",
             fontSize: "1.25rem",
             marginLeft: isExpanded ? "1rem" : "0",
+            textDecoration:'none',
+            color:"white",
+            display:"block"
           }}
+          href="/"
         >
           Echobeat
-        </div>
+        </a>
         {isExpanded && (
   
-          <div style={{ display: "flex", gap: "1rem", marginRight: "1rem" }}>
+          <div style={{ display: "flex", gap: "1rem", marginRight: "1rem",alignItems:'center' }}>
             <SearchBar />
             <QuickLinks />
             <a href="/" style={{ textDecoration: "none", color: "white" }}>

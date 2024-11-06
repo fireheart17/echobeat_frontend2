@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './LikeButton.css';
+import './DeleteButton.css';
 import Cookies from "js-cookie";
 
 const DeleteButton = ({track_id}) => {
@@ -59,9 +59,9 @@ const [user, setUser] = useState([]);
   return (
     <button 
       onClick={onClickHandler}
-      className='likeButton'
+      className='DeleteButton'
     >
-      ➖
+      &#8722;
     </button>
   );
 };

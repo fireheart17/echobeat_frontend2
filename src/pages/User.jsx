@@ -69,18 +69,19 @@ const UserProfile = () => {
         <div>
             <Navbar />
 
-            <div className="profile-container">
-                <div className="profile-header">
-                    <div className="profile-pic">
-                        <img src="https://avatars.githubusercontent.com/u/118014773?v=4" alt="User Picture" />
+                <div className="profile-container">
+                <div className="spacer" style={{height:'60px'}}></div>
+                    <div className="profile-header">
+                        <div className="profile-pic">
+                            {/* <img src="https://avatars.githubusercontent.com/u/118014773?v=4" alt="User Picture" /> */}
+                            <img src="http://localhost:8081/songs/cat.png" alt="User Picture" />
+                        </div>
+                        <div className="profile-info">
+                            <h1>{userInfo.firstName} {userInfo.lastName}</h1>
+                            <p><strong>Online:</strong> <span className="online-indicator">●</span></p>
+                            <button className="btn" onClick={() => setShowForm(true)}>Change User Information</button>
+                        </div>
                     </div>
-                    <div className="profile-info">
-                        <h1>{user.first_name} {user.lastName}</h1>
-                        <p><strong>Online:</strong> <span className="online-indicator">●</span></p>
-                        {/* <button className="btn" >Change User Information</button> */}
-                        {/* <button className="btn" onClick={() => setShowForm(true)}>Change User Information</button> */}
-                    </div>
-                </div>
 
                 <div className="profile-stats">
                     <div className="about-me">
@@ -131,7 +132,8 @@ const UserProfile = () => {
                 </div>
 
             </div>
-        </div>
+            <Navbar />
+        </>
     );
 };
 

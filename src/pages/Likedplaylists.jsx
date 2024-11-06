@@ -6,6 +6,7 @@ import './Playlist.css';
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import CheckAuth from "../components/CheckAuth";
+import Navbar from '../components/Navbar';
 
 const Song = () => {
     // const { id } = useParams(); // Capture playlist ID from URL
@@ -131,6 +132,7 @@ const Song = () => {
         <>
             <CheckAuth />
             <div className="playlist-container">
+            <div className="spacer" style={{height:'60px'}}></div>
                 <h1>Liked Playlists</h1>
                 <div className="action-buttons">
                     {/* <button className="play-all-btn" onClick={playAllSongs}>
@@ -169,6 +171,7 @@ const Song = () => {
                     )}
                 </div>
             </div>
+            <Navbar />
         </>
     );
 };

@@ -102,6 +102,7 @@ const Song = () => {
         <>
             <CheckAuth />
             <div className="playlist-container">
+            <div className="spacer" style={{height:'60px'}}></div>
                 <h1>{chart.chart_type}</h1>
                 <div className="action-buttons">
                     {/* <button className="play-all-btn" onClick={playAllSongs}>
@@ -142,6 +143,7 @@ const Song = () => {
                     )}
                 </div>
             </div>
+            <Navbar />
         </>
     );
 };

@@ -6,6 +6,8 @@ import './Playlist.css';
 import SearchSongs from '../components/SearchSongs';
 import CheckAuth from "../components/CheckAuth";
 import useLikedSongs from '../components/useLikedSongs';
+import Navbar from '../components/Navbar';
+import DeleteButtonPlaylist from '../components/DeleteButtonPlaylist';
 
 
 const Playlist = () => {
@@ -31,18 +33,22 @@ const Playlist = () => {
     // Fetch playlist data from the API and get artist details for each track
     const fetchPlaylistData = async () => {
         try {
-            // Step 1: Fetch tracks for the playlist
             const response = await fetch(`http://localhost:8081/api/playlistsTracks/playlist/${id}`);
-            const tracksData = await response.json();
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const text = await response.text();
+            const tracksData = text ? JSON.parse(text) : []; // Parse JSON only if text is not empty
             console.log("here " + tracksData);
+    
             // Step 2: For each track, fetch artist details
             const tracksWithArtists = await Promise.all(
                 tracksData.map(async (track) => {
                     const artistResponse = await fetch(`http://localhost:8081/api/getTrackArtists/${track.track_id}`);
-                    // console.log(artistResponse);
-                    const artistData = await artistResponse.json();
+                    const artistText = await artistResponse.text();
+                    const artistData = artistText ? JSON.parse(artistText) : []; // Parse JSON only if artistText is not empty
                     console.log(artistData);
-                    // Assuming you want to display the first artist's name if multiple artists are returned
+    
                     const artist_name = artistData.length > 0
                         ? `${artistData[0].artist_name}`
                         : "Unknown Artist";
@@ -58,7 +64,7 @@ const Playlist = () => {
                     };
                 })
             );
-
+    
             // Update state with combined track and artist data
             setSongs(tracksWithArtists);
             return "success";
@@ -68,6 +74,7 @@ const Playlist = () => {
             setIsLoading(false);
         }
     };
+    
     useEffect(() => {
         fetchPlaylistData().then(res => { console.log(res) });
     }, [id]);
@@ -76,6 +83,7 @@ const Playlist = () => {
         <>
             <CheckAuth />
             <div className="playlist-container">
+            <div className="spacer" style={{height:'60px'}}></div>
                 <h1>{playlist.title}</h1>
                 <div className="action-buttons">
                     {/* <button className="play-all-btn" onClick={playAllSongs}>
@@ -109,9 +117,10 @@ const Playlist = () => {
                                     <span>{song.duration}</span>
                                 </div>
                                 <div style = {{marginLeft:'40%'}}> 
-                                {likedSongs.includes(song.trackId) && <>&#10084;</>}
+                                <DeleteButtonPlaylist playlist_id={id} track_id={song.trackId}  fetchData={fetchPlaylistData}/>
+                                {likedSongs.includes(song.trackId) && <> &#10084;</>}
                                  </div>
-                                {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
+                                {/* <button onClick={() ={likedSongs.includes(song.trackId) && <>&#10084;</>}> playSong(song.trackId)}>Play</button> */}
                                 {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
                                 {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
                             </div>
@@ -121,6 +130,7 @@ const Playlist = () => {
 
                 <div style={{ marginTop: '40px' }}><SearchSongs playlist_id={id} fetchData={fetchPlaylistData} /></div>
             </div>
+            <Navbar />
         </>
     );
 };
