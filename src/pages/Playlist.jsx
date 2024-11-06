@@ -6,12 +6,14 @@ import './Playlist.css';
 import SearchSongs from '../components/SearchSongs';
 import CheckAuth from "../components/CheckAuth";
 import LikeButton from '../components/LikeButton';
+import Cookies from 'js-cookie'
 
 const Playlist = () => {
     const { id } = useParams(); // Capture playlist ID from URL
     const [songs, setSongs] = useState([]);
     const [playlist, setPlaylist] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [likedSongs,setLikedSongs] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -70,23 +72,23 @@ const Playlist = () => {
         fetchPlaylistData().then(res => { console.log(res) });
     }, [id]);
 
-    // Function to handle playing all songs
-    const playAllSongs = () => {
-        songs.forEach(song => playSong(song.trackId));
-    };
+    const fetchLikedSongs=async ()=>{
+        const response = await fetch(`http://localhost:8081/api/likedSongsFromToken`,
+            {
+                method:"GET",
+            headers:{
+              Authorization:`Bearer ${Cookies.get("token")}`
+            }
+            }
+        );
+        const res = await response.json();
+        // console.log("likedSongs " + res);
+        setLikedSongs(res)
+    }
 
-    // Dummy functions to illustrate maintaining existing functionality
-    const playSong = (trackId) => {
-        console.log(`Playing song with ID: ${trackId}`);
-    };
-
-    const likeSong = (trackId) => {
-        console.log(`Liking song with ID: ${trackId}`);
-    };
-
-    const addToQueue = (trackId) => {
-        console.log(`Adding song with ID: ${trackId} to queue`);
-    };
+    useEffect(() => {
+        fetchLikedSongs().then(res => { console.log(res) });
+    }, []);
 
     return (
         <>
@@ -124,7 +126,9 @@ const Playlist = () => {
                                 <div className="song-duration">
                                     <span>{song.duration}</span>
                                 </div>
-                                <div style = {{marginLeft:'40%'}}> <LikeButton track_id={song.trackId}/> </div>
+                                <div style = {{marginLeft:'40%'}}> 
+                                {likedSongs.includes(song.trackId) && <>&#10084;</>}
+                                 </div>
                                 {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
                                 {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
                                 {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}

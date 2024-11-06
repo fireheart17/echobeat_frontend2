@@ -89,7 +89,7 @@ const ArtistProfile = () => {
                                 className="profile-img"
                             />
                             <div className="profile-details">
-                                <h2>{`${artist?.first_name} ${artist?.last_name}`}</h2>
+                                <h2>{`${artist?.artist_name} `}</h2>
                                 <p className="followers">{`#Followers: ${artist?.follower_count}`}</p>
                                 <p className="global-rank">{`Global Rank: ${artist?.global_rank}`}</p>
                                 <p className="country">{`Country: ${artist?.country}`}</p>
