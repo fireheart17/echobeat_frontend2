@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './LikeButton.css';
 import Cookies from "js-cookie";
 
-const LikeButtonPlaylist = ({playlist_id}) => {
+const LikeButtonAlbum = ({album_id}) => {
 const [user, setUser] = useState([]);
     const token = Cookies.get("token")
     console.log("token form button " + token);
-    console.log("playlist from button " + playlist_id);
+    console.log("album from button " + album_id);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -35,12 +35,12 @@ const [user, setUser] = useState([]);
         fetchData()
     }, []);
   const onClickHandler = async() => {
-    if (user && playlist_id) {
-        const data = { user_id : user, playlist_id: playlist_id };
+    if (user && album_id) {
+        const data = { user_id : user, album_id: album_id };
         console.log("User : " + user);
-        console.log("Playlist : " + playlist_id);
+        console.log("Album : " + album_id);
         try{
-            const res = await fetch('http://localhost:8081/api/likedplaylists', {
+            const res = await fetch('http://localhost:8081/api/liked-albums', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,10 +49,10 @@ const [user, setUser] = useState([]);
             });
         }
         catch(error){
-            console.error('Error in Putting the liked playlist');
+            console.error('Error in Putting the liked album');
         }
     } else {
-      console.warn("User or Track ID is missing!");
+      console.warn("User or Album ID is missing!");
     }
   };
 
@@ -66,4 +66,4 @@ const [user, setUser] = useState([]);
   );
 };
 
-export default LikeButtonPlaylist;
+export default LikeButtonAlbum;

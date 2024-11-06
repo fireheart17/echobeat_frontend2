@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './LikeButton.css';
 import Cookies from "js-cookie";
 
-const LikeButton = ({track_id}) => {
+const DeleteButton = ({track_id}) => {
 const [user, setUser] = useState([]);
     const token = Cookies.get("token")
     console.log("token form button " + token);
@@ -66,4 +66,4 @@ const [user, setUser] = useState([]);
   );
 };
 
-export default LikeButton;
+export default DeleteButton;
