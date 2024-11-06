@@ -128,7 +128,6 @@ const Playlist = () => {
                                 </div>
                                 <div style = {{marginLeft:'40%'}}> 
                                 {likedSongs.includes(song.trackId) && <>&#10084;</>}
-                                <DeleteButtonPlaylist playlist_id={id} track_id = {song.trackId} fetchData={fetchPlaylistData}/>
                                  </div>
                                 {/* <button onClick={() => playSong(song.trackId)}>Play</button> */}
                                 {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
