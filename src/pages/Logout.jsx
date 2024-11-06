@@ -6,7 +6,7 @@ export default function Logout() {
   const navigate = useNavigate();
   useEffect(() => {
     Cookies.remove("token");
-    navigate("/login");
+    navigate("/home");
   }, []);
   return <>logging out...</>;
 }

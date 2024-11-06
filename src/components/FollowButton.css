@@ -1,0 +1,18 @@
+.follow-button{
+    border:none;
+    width:100px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--color-200);
+    transition:0.3s;
+    padding:10px;
+    border-radius:4px;
+    color:white;
+    font-weight:700;
+    font-size:14px;
+}
+
+.follow-button:hover{
+    background:var(--color-300);
+}
