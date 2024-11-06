@@ -19,9 +19,29 @@ export default function Player() {
     track_id: "",
   });
 
+  const incrementListenCount = async () => {
+    try {
+      const response = await fetch(`http://localhost:8081/api/tracks/${id}/incrementListen`, {
+        method: "PATCH", // Use PATCH for partial updates
+      });
+
+      if (response.ok) {
+        console.log(`Listen count for track ${id} incremented successfully.`);
+      } else {
+        console.error("Failed to increment listen count.");
+      }
+    } catch (error) {
+      console.error("Error incrementing listen count:", error);
+    }
+  };
+
   useEffect(()=>{
     fetch(`http://localhost:8081/api/tracks/${id}`).then(res=>res.json()).then(track=>{setTrack(track)})
   },[])
+
+  const handlePlay = () => {
+    incrementListenCount();
+  };
 
   return (
     <>
@@ -36,6 +56,7 @@ export default function Player() {
             <AudioPlayer
               src={`http://localhost:8081/songs/track_${track.track_id}.mp3`}
               style={{ borderRadius: "10px",backgroundColor:"var(--color-100)" }}
+              onPlay={handlePlay}
             />
           </div>
           {/* <div className="track-lyrics"><span style={{whiteSpace:'pre',maxHeight:'200px',overflowY:'scroll',display:'block',overflowX:'hidden',fontStyle:'italic'}}>{track.lyrics || "Lyrics to this song are not available"}</span></div> */}
