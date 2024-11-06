@@ -52,7 +52,7 @@ body {
     z-index:-1;
     top:100px;
     left:300px;
-    transition:1s;
+    transition:0.4s;
 }
 
 .main-content {
@@ -69,14 +69,14 @@ body {
     font-weight: bold;
     color: #a68b73; 
     margin-bottom: 10px;
-    transition:1s;
+    transition:0.4s;
 }
 
 .description {
     font-size: 1.2rem;
     color: #7f6b5b;
     margin-bottom: 40px;
-    transition:1s;
+    transition:0.4s;
 }
 
 .get-started-btn {
