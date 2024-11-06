@@ -156,7 +156,7 @@ const ArtistProfile = () => {
                                 <ul id="albumList">
                                     {albums?.map((album, index) => (
                                         <li key={index} className="album">
-                                            <a href={`/albums/${album.id}`} className="nlink">
+                                            <a href={`/album/${album.album_id}`} className="nlink">
                                                 <div>{album?.title}</div>
                                             </a>
                                         </li>
