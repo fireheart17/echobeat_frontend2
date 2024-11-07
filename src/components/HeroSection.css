@@ -73,10 +73,18 @@
   -webkit-filter: brightness(70%);
 }
 
+.search-bar-wrapper{
+  display:none;
+  font-size:14px;
+}
+
 @media (max-width: 900px) {
   .explore-button {
     width: 200px;
     height: 100px;
     margin-bottom:20px;
+  }
+  .search-bar-wrapper{
+    display:block;
   }
 }

@@ -1,6 +1,7 @@
 // components/HeroSection.js
-import React from 'react';
-import './HeroSection.css'; // Import CSS specific to this component
+import React from "react";
+import "./HeroSection.css"; // Import CSS specific to this component
+import SearchBar from "./SearchBar";
 
 const HeroSection = (props) => {
   return (
@@ -8,12 +9,23 @@ const HeroSection = (props) => {
       <div className="hero-text" id="hero-text">
         {/* Discover, Inspire, Connect: Your Blog for Everything Worth Sharing. <br /> */}
         Sup {props.name}!
+        <div className="search-bar-wrapper">
+          <SearchBar />
+        </div>
       </div>
       <div className="buttons">
-        <a className="explore-button liked-songs" href="/likedsongs">Liked Songs</a>
-        <a className="explore-button liked-playlists" href="/likedplaylists">Liked Playlists</a>
-        <a className="explore-button liked-podcasts" href="/likedpodcasts">Liked Podcasts</a>
-        <a className="explore-button liked-albums" href="/likedalbums">Liked Albums</a>
+        <a className="explore-button liked-songs" href="/likedsongs">
+          Liked Songs
+        </a>
+        <a className="explore-button liked-playlists" href="/likedplaylists">
+          Liked Playlists
+        </a>
+        <a className="explore-button liked-podcasts" href="/likedpodcasts">
+          Liked Podcasts
+        </a>
+        <a className="explore-button liked-albums" href="/likedalbums">
+          Liked Albums
+        </a>
       </div>
     </div>
   );
