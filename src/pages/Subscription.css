@@ -1,0 +1,71 @@
+/* Subscription.css */
+
+.subscription-container {
+    text-align: center;
+    padding: 2rem;
+    color: #8b6f56; /* Use your themed color */
+    font-family: Arial, sans-serif;
+}
+
+.subscription-container h1 {
+    font-size: 2.5rem;
+    color: #8b6f56;
+}
+
+.subscription-container p {
+    font-size: 1.2rem;
+    color: #8b6f56;
+    margin-bottom: 1.5rem;
+}
+
+.subscription-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.subscription-card {
+    background-color: #f5e3c3;
+    border: 1px solid #d0b89f;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 250px;
+    text-align: left;
+}
+
+.subscription-card h2 {
+    font-size: 1.5rem;
+    color: #8b6f56;
+    margin-bottom: 1rem;
+}
+
+.subscription-card ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+
+.subscription-card ul li {
+    margin: 0.5rem 0;
+    color: #6f5644;
+}
+
+.buy-button {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #8b6f56;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.buy-button:hover {
+    background-color: #6f5644;
+}
+
+.premium {
+    background-color: #e6ccb2;
+}
