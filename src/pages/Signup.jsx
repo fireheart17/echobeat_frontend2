@@ -32,22 +32,22 @@ const Signup = () => {
         body: JSON.stringify(formData), // Convert form data to JSON
       });
       if (response.ok) {
-          alert("User Created Successfully");
-          navigate("/login");
-          // const data = await response.json();
+        alert("User Created Successfully");
+        navigate("/login");
+        // const data = await response.json();
 
-          // // Set a cookie upon successful signup (e.g., setting a token)
-          // Cookies.set('token', data.token, { expires: 7 }); // Example: token expiry of 7 days
-          // alert('Signup successful: ' + data.message); // Customize as needed
+        // // Set a cookie upon successful signup (e.g., setting a token)
+        // Cookies.set('token', data.token, { expires: 7 }); // Example: token expiry of 7 days
+        // alert('Signup successful: ' + data.message); // Customize as needed
 
-          // Optionally, redirect the user to another page
-          // navigate('/some-route'); // Use the navigate function from react-router-dom if needed
-        } else {
-          const errorMessage = await response.text();
+        // Optionally, redirect the user to another page
+        // navigate('/some-route'); // Use the navigate function from react-router-dom if needed
+      } else {
+        const errorMessage = await response.text();
         console.error("SignUp failed:", errorMessage);
         document.getElementById("usernameAlreadyExists").style.display =
           "block";
-        }
+      }
     } catch (error) {
       console.error("Error during signup:", error);
       alert("Error during signup");
@@ -119,11 +119,13 @@ const Signup = () => {
 
           {/* Date of Birth Input */}
           <div className="input-group">
+          <label htmlFor="dob" className="custom-label">Date of Birth</label>
             <input
               className="custom-input"
               type="date"
               id="dob"
               name="dob"
+              placeholder="lastname"
               value={formData.dob}
               onChange={handleChange}
               required
@@ -157,15 +159,15 @@ const Signup = () => {
           </div>
         </form>
         <div
-            className="error-message"
-            id="usernameAlreadyExists"
-            style={{ display: "none" }}
-          >
-            Username Already Exists 
-          </div>
+          className="error-message"
+          id="usernameAlreadyExists"
+          style={{ display: "none" }}
+        >
+          Username Already Exists
+        </div>
         <a className="signup-link" href="/login">
-            Already a user? login here
-          </a>
+          Already a user? login here
+        </a>
         {/* Background Elements */}
         {/* <div className="background-container">
         <div className="inner-container">

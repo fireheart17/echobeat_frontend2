@@ -81,7 +81,7 @@ body {
 
 
 .input-group label {
-  color: black;
+  color: rgba(0, 0, 0, 0.5);
   font-size: 14px;
   display: block;
   margin-bottom: 5px;
