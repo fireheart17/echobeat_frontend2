@@ -51,6 +51,9 @@ const Song = () => {
         try {
             // Step 1: Fetch tracks for the playlist
             const response = await fetch(`http://localhost:8081/api/playlists/user/${id}`);
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
             const playlistsData = await response.json();
             console.log(playlistsData);
             const tracksWithArtists = await Promise.all(

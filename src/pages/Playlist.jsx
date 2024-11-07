@@ -15,7 +15,7 @@ const Playlist = () => {
     const [songs, setSongs] = useState([]);
     const [playlist, setPlaylist] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [likedSongs,fetchLikedSongs] = useLikedSongs()
+    const [likedSongs, fetchLikedSongs] = useLikedSongs()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,7 +40,7 @@ const Playlist = () => {
             const text = await response.text();
             const tracksData = text ? JSON.parse(text) : []; // Parse JSON only if text is not empty
             console.log("here " + tracksData);
-    
+
             // Step 2: For each track, fetch artist details
             const tracksWithArtists = await Promise.all(
                 tracksData.map(async (track) => {
@@ -48,7 +48,7 @@ const Playlist = () => {
                     const artistText = await artistResponse.text();
                     const artistData = artistText ? JSON.parse(artistText) : []; // Parse JSON only if artistText is not empty
                     console.log(artistData);
-    
+
                     const artist_name = artistData.length > 0
                         ? `${artistData[0].artist_name}`
                         : "Unknown Artist";
@@ -64,7 +64,7 @@ const Playlist = () => {
                     };
                 })
             );
-    
+
             // Update state with combined track and artist data
             setSongs(tracksWithArtists);
             return "success";
@@ -74,7 +74,7 @@ const Playlist = () => {
             setIsLoading(false);
         }
     };
-    
+
     useEffect(() => {
         fetchPlaylistData().then(res => { console.log(res) });
     }, [id]);
@@ -83,7 +83,7 @@ const Playlist = () => {
         <>
             <CheckAuth />
             <div className="playlist-container">
-            <div className="spacer" style={{height:'60px'}}></div>
+                <div className="spacer" style={{ height: '60px' }}></div>
                 <h1>{playlist.title}</h1>
                 <div className="action-buttons">
                     {/* <button className="play-all-btn" onClick={playAllSongs}>
@@ -116,10 +116,10 @@ const Playlist = () => {
                                 <div className="song-duration">
                                     <span>{song.duration}</span>
                                 </div>
-                                <div style = {{marginLeft:'40%'}}> 
-                                <DeleteButtonPlaylist playlist_id={id} track_id={song.trackId}  fetchData={fetchPlaylistData}/>
-                                {likedSongs.includes(song.trackId) && <> &#10084;</>}
-                                 </div>
+                                <div style={{ marginLeft: '40%' }}>
+                                    <DeleteButtonPlaylist playlist_id={id} track_id={song.trackId} fetchData={fetchPlaylistData} />
+                                    {likedSongs.includes(song.trackId) && <> &#10084;</>}
+                                </div>
                                 {/* <button onClick={() ={likedSongs.includes(song.trackId) && <>&#10084;</>}> playSong(song.trackId)}>Play</button> */}
                                 {/* <button onClick={() => likeSong(song.trackId)}>Like</button> */}
                                 {/* <button onClick={() => addToQueue(song.trackId)}>Add to Queue</button> */}
