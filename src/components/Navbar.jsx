@@ -84,7 +84,7 @@ const Navbar = () => {
                 href="/user"
                 style={{ textDecoration: "none", color: "white" }}
               >
-                User
+                Profile
               </a>
               <a
                 href="/logout"

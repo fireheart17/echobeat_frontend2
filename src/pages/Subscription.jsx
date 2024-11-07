@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import './Subscription.css';
 import Cookies from 'js-cookie';
+import Navbar from '../components/Navbar';
 
 const Subscription = () => {
     const handleSubscriptionPurchase = async (subscriptionId) => {
@@ -55,6 +56,7 @@ const Subscription = () => {
 
     return (
         <div className="subscription-container">
+            <div className="spacer" style={{ height: '60px' }}></div>
             <h1>Choose Your Plan</h1>
             <p>Experience the best music tailored just for you.</p>
 
@@ -93,6 +95,7 @@ const Subscription = () => {
                     </button>
                 </div>
             </div>
+            <Navbar />
         </div>
     );
 };
