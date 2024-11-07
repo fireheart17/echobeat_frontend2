@@ -32,6 +32,7 @@ const Signup = () => {
         body: JSON.stringify(formData), // Convert form data to JSON
       });
       if (response.ok) {
+          alert("User Created Successfully");
           navigate("/login");
           // const data = await response.json();
 
