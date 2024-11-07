@@ -86,7 +86,7 @@ const Playlist = () => {
             <div className="playlist-container">
                 <div className="spacer" style={{ height: '60px' }}></div>
                 <h1>{playlist.title}</h1>
-                <LikeButtonPlaylist playlist_id={id}/>
+                <div style={{width:'10px'}}><LikeButtonPlaylist playlist_id={id}/></div>
                 <div className="action-buttons">
                     {/* <button className="play-all-btn" onClick={playAllSongs}>
                         Play All
