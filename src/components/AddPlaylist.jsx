@@ -74,7 +74,7 @@ const SearchBar = (props) => {
           type="text"
           value={query}
           onChange={handleInputChange}
-          placeholder="Search..."
+          placeholder="Playlist Name" 
           className="searchbar-input"
         />
         <button type="submit" className="searchbar-button">
