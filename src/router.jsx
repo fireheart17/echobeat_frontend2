@@ -20,7 +20,7 @@ import HomePage from "./pages/HomePage";
 import Demo from "./pages/Demo";
 import Album from "./pages/Album";
 import Myplaylists from "./pages/Myplaylists";
-
+import Subscription from "./pages/Subscription";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -106,6 +106,11 @@ export const router = createBrowserRouter([
     path : "/user",
     element : <User />,
   },
+  {
+    path : "/subscribe",
+    element : <Subscription />,
+  },
+  
   {
     path: "/myplaylists",
     element: <Myplaylists/>

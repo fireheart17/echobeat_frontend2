@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom';
 import './user_style.css';
 import Navbar from './../components/Navbar';
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
     // const [token, setToken] = useState("");
     const [user, setUser] = useState(null);
-
+    const navigate=useNavigate()
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -18,6 +19,7 @@ const UserProfile = () => {
                     },
                 });
                 if (!response.ok) {
+                    navigate("/login");
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();  // Assuming the token is returned as plain text
