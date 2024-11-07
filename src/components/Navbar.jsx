@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import QuickLinks from "./QuickLinks";
 import SearchBar from "./SearchBar";
+import './Navbar.css';
 
 const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -15,7 +16,7 @@ const Navbar = () => {
       <nav
         style={{
           position: "fixed",
-          left: isExpanded? "2.5vw":"50%",
+          left: isExpanded ? "2.5vw" : "50%",
           top: "20px",
           backgroundColor: "rgb(175, 154, 122)",
           color: "white",
@@ -35,31 +36,48 @@ const Navbar = () => {
             fontWeight: "bold",
             fontSize: "1.25rem",
             marginLeft: isExpanded ? "1rem" : "0",
-            textDecoration:'none',
-            color:"white",
-            display:"block"
+            textDecoration: "none",
+            color: "white",
+            display: "block",
           }}
           href="/"
         >
           Echobeat
         </a>
         {isExpanded && (
-  
-          <div style={{ display: "flex", gap: "1rem", marginRight: "1rem",alignItems:'center' }}>
-            <SearchBar />
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              marginRight: "1rem",
+              alignItems: "center",
+            }}
+          >
             <QuickLinks />
-            <a href="/" style={{ textDecoration: "none", color: "white" }}>
-              Home
-            </a>
-            <a href="/charts" style={{ textDecoration: "none", color: "white" }}>
-              Charts
-            </a>
-            <a href="/user" style={{ textDecoration: "none", color: "white" }}>
-              User
-            </a>
-            <a href="/logout" style={{ textDecoration: "none", color: "white" }}>
-              logout
-            </a>
+            <div className="nav-items">
+              <SearchBar />
+              <a href="/" style={{ textDecoration: "none", color: "white" }}>
+                Home
+              </a>
+              <a
+                href="/charts"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Charts
+              </a>
+              <a
+                href="/user"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                User
+              </a>
+              <a
+                href="/logout"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                logout
+              </a>
+            </div>
           </div>
         )}
       </nav>
