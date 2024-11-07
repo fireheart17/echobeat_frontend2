@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 const Subscription = () => {
     const handleSubscriptionPurchase = async (subscriptionId) => {
         try {
-            const response = await fetch(`http://localhost:8081/api/users/update-subscription`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/update-subscription`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
