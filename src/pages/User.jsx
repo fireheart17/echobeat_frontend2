@@ -19,7 +19,7 @@ const UserProfile = () => {
                     },
                 });
                 if (!response.ok) {
-                    navigate("/login");
+                    navigate("/home");
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();

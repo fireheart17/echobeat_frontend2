@@ -13,7 +13,7 @@ const HomePage = () => {
 
     return (
         <>
-            <CheckAuth />
+            {/* <CheckAuth /> */}
             <div className="home-container">
                 <header className="header">
                     <h1 className="app-name">EchoBeat</h1>
