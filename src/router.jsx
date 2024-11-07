@@ -19,6 +19,7 @@ import Signup from "./pages/Signup";
 import HomePage from "./pages/HomePage";
 import Demo from "./pages/Demo";
 import Album from "./pages/Album";
+import Subscription from "./pages/Subscription";
 
 export const router = createBrowserRouter([
   {
@@ -105,4 +106,8 @@ export const router = createBrowserRouter([
     path : "/user",
     element : <User />,
   },
+  {
+    path : "/subscribe",
+    element : <Subscription />,
+  }
 ]);
