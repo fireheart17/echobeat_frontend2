@@ -49,18 +49,30 @@ const Song = () => {
     // Fetch playlist data from the API and get artist details for each track
     const fetchPlaylistData = async () => {
         try {
-            // Step 1: Fetch tracks for the playlist
+            // Step 1: Fetch playlists for the user
             const response = await fetch(`http://localhost:8081/api/playlists/user/${id}`);
-            const playlistsData = await response.json();
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch playlists data');
+            }
+    
+            const text = await response.text();
+            const playlistsData = text ? JSON.parse(text) : []; // Parse JSON only if response is not empty
             console.log(playlistsData);
+    
             const tracksWithArtists = await Promise.all(
                 playlistsData.map(async (playlist) => {
+                    // Fetch user token based on user ID
                     const response = await fetch(`http://localhost:8081/api/users/${id}`);
+                    
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
-                    const token = await response.text();
-
+    
+                    const tokenText = await response.text();
+                    const token = tokenText || ''; // Ensure token is valid
+    
+                    // Fetch user profile using the token
                     const response2 = await fetch('http://localhost:8081/api/users/profile', {
                         method: 'GET',
                         headers: {
@@ -68,19 +80,17 @@ const Song = () => {
                             'Content-Type': 'application/json'
                         }
                     });
-
+    
                     if (!response2.ok) {
                         throw new Error('Failed to fetch user profile');
                     }
-
-                    const user = await response2.json();
-
+    
+                    const userText = await response2.text();
+                    const user = userText ? JSON.parse(userText) : {}; // Parse JSON only if userText is not empty
                     console.log(user);
-                    // Assuming you want to display the first artist's name if multiple artists are returned
-                    const user_name = user
-                        ? `${user.username}`
-                        : "Unknown Artist";
-                    console.log("hello" + user.user_name);
+    
+                    const user_name = user?.username || "Unknown Artist";
+    
                     return {
                         playlistId: playlist.playlist_id,
                         playlistName: playlist.title,
@@ -89,8 +99,8 @@ const Song = () => {
                     };
                 })
             );
-
-            // Update state with combined track and artist data
+    
+            // Update state with combined playlist and artist data
             setPlaylists(tracksWithArtists);
         } catch (error) {
             console.error("Error fetching playlist data:", error);
@@ -98,6 +108,7 @@ const Song = () => {
             setIsLoading(false);
         }
     };
+    
 
     useEffect(() => {
         fetchPlaylistData().then(res => { console.log(res) });
