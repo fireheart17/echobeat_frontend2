@@ -31,20 +31,22 @@ const Signup = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData), // Convert form data to JSON
       });
-      navigate("/login");
-      //   if (response.ok) {
-      //     const data = await response.json();
+      if (response.ok) {
+          navigate("/login");
+          // const data = await response.json();
 
-      //     // Set a cookie upon successful signup (e.g., setting a token)
-      //     Cookies.set('token', data.token, { expires: 7 }); // Example: token expiry of 7 days
-      //     alert('Signup successful: ' + data.message); // Customize as needed
+          // // Set a cookie upon successful signup (e.g., setting a token)
+          // Cookies.set('token', data.token, { expires: 7 }); // Example: token expiry of 7 days
+          // alert('Signup successful: ' + data.message); // Customize as needed
 
-      //     // Optionally, redirect the user to another page
-      //     // navigate('/some-route'); // Use the navigate function from react-router-dom if needed
-      //   } else {
-      //     const errorData = await response.json();
-      //     alert('Signup failed: ' + errorData.message); // Customize as needed
-      //   }
+          // Optionally, redirect the user to another page
+          // navigate('/some-route'); // Use the navigate function from react-router-dom if needed
+        } else {
+          const errorMessage = await response.text();
+        console.error("SignUp failed:", errorMessage);
+        document.getElementById("usernameAlreadyExists").style.display =
+          "block";
+        }
     } catch (error) {
       console.error("Error during signup:", error);
       alert("Error during signup");
@@ -153,6 +155,13 @@ const Signup = () => {
             </button>
           </div>
         </form>
+        <div
+            className="error-message"
+            id="usernameAlreadyExists"
+            style={{ display: "none" }}
+          >
+            Username Already Exists 
+          </div>
         <a className="signup-link" href="/login">
             Already a user? login here
           </a>
