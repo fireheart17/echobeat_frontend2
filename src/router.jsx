@@ -21,6 +21,7 @@ import Demo from "./pages/Demo";
 import Album from "./pages/Album";
 import Myplaylists from "./pages/Myplaylists";
 import Subscription from "./pages/Subscription";
+import PodcastPlayer from "./pages/PodcastPlayer";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -114,5 +115,9 @@ export const router = createBrowserRouter([
   {
     path: "/myplaylists",
     element: <Myplaylists/>
-  }
+  },
+  {
+    path: "/podcastplayer/:id",
+    element: <PodcastPlayer />,
+  },
 ]);
