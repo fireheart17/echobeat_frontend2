@@ -8,6 +8,7 @@ import CheckAuth from "../components/CheckAuth";
 import useLikedSongs from '../components/useLikedSongs';
 import Navbar from '../components/Navbar';
 import DeleteButtonPlaylist from '../components/DeleteButtonPlaylist';
+import LikeButtonPlaylist from '../components/LikeButtonPlaylist';
 
 
 const Playlist = () => {
@@ -85,6 +86,7 @@ const Playlist = () => {
             <div className="playlist-container">
                 <div className="spacer" style={{ height: '60px' }}></div>
                 <h1>{playlist.title}</h1>
+                <LikeButtonPlaylist playlist_id={id}/>
                 <div className="action-buttons">
                     {/* <button className="play-all-btn" onClick={playAllSongs}>
                         Play All
