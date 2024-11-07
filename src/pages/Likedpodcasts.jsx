@@ -132,7 +132,7 @@ const Podcast = () => {
                         <p>Loading Podcasts...</p>
                     ) : (
                         podcasts.map((podcast, index) => (
-                            <a key={podcast.podcastId} href={`/player/${podcast.podcastId}`} className="song-link">
+                            <a key={podcast.podcastId} href={`/podcastplayer/${podcast.podcastId}`} className="song-link">
                                 <div key={podcast.podcastId} className="song-row">
                                     <div className="song-number">{index + 1}</div>
                                     <div className="song-title">

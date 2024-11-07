@@ -121,7 +121,7 @@ const SearchBar = () => {
         }
         const data = await response.json();
         setResults(data.map((result) => (
-          <a key={result.podcast_id} className="searchbar-result-item" href={`/player/${result.podcast_id}`} style={{textDecoration:'none',display:'block',overflow:'hidden',color:'black'}}>{result.podcast_name}
+          <a key={result.podcast_id} className="searchbar-result-item" href={`/podcastplayer/${result.podcast_id}`} style={{textDecoration:'none',display:'block',overflow:'hidden',color:'black'}}>{result.podcast_name}
           </a>
         )))
         // setResults(data);

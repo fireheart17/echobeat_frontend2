@@ -59,6 +59,9 @@ const Navbar = () => {
               <a href="/" style={{ textDecoration: "none", color: "white" }}>
                 Home
               </a>
+              <a href="/upload" style={{ textDecoration: "none", color: "white" }}>
+                Upload
+              </a>
               <a
                 href="/charts"
                 style={{ textDecoration: "none", color: "white" }}
