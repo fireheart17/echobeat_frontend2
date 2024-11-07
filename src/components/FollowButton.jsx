@@ -9,7 +9,7 @@ const FollowButton = ({ artist_id,fetch_artist }) => {
   console.log("artist from button " + artist_id);
   const checkFollower=async ()=>{
     const res = await fetch(
-        `http://localhost:8081/api/checkfollower/${artist_id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/checkfollower/${artist_id}`,
         {
           method: "GET",
           headers: {
@@ -28,7 +28,7 @@ const FollowButton = ({ artist_id,fetch_artist }) => {
       if (!userFollowsArtist) {
         try {
           const res = await fetch(
-            `http://localhost:8081/api/addfollower/${artist_id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/api/addfollower/${artist_id}`,
             {
               method: "GET",
               headers: {
@@ -45,7 +45,7 @@ const FollowButton = ({ artist_id,fetch_artist }) => {
       } else {
         try {
             const res = await fetch(
-              `http://localhost:8081/api/followers/${artist_id}`,
+              `${process.env.REACT_APP_BACKEND_URL}/api/followers/${artist_id}`,
               {
                 method: "DELETE",
                 headers: {

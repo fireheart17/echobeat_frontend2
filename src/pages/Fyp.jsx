@@ -19,7 +19,7 @@ const App = () => {
   useEffect(() => {
     // if (Cookies.get("token") == null) navigate("/home")
     const fetchData = async () => {
-      const res = await fetch(`http://localhost:8081/api/users/profile`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/profile`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${Cookies.get("token")}`
@@ -39,7 +39,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`http://localhost:8081/api/toppicks`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/toppicks`, {
         method: "GET"
       })
       if (res.status === 200) {
@@ -55,7 +55,7 @@ const App = () => {
   }, []);
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`http://localhost:8081/api/newtracks`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/newtracks`, {
         method: "GET"
       })
       if (res.status === 200) {

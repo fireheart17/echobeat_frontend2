@@ -12,7 +12,7 @@ const LikeButton = ({ track_id }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:8081/api/users/validate", {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/validate`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ const LikeButton = ({ track_id }) => {
       if (likedSongs.includes(track_id)) {
         try {
           const res = await fetch(
-            `http://localhost:8081/api/likedSongs/${user}/${track_id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/api/likedSongs/${user}/${track_id}`,
             {
               method: "DELETE",
               headers: {
@@ -58,7 +58,7 @@ const LikeButton = ({ track_id }) => {
         }
       } else {
         try {
-          const res = await fetch("http://localhost:8081/api/likedSongs", {
+          const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/likedSongs`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

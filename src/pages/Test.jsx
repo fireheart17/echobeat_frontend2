@@ -11,7 +11,7 @@ const UserProfile = () => {
     useEffect(() => {
         const fetchToken = async () => {
             try {
-                const response = await fetch(`http://localhost:8081/api/users/${userId}`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/${userId}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -31,7 +31,7 @@ const UserProfile = () => {
         const fetchUser = async () => {
             if (token) {
                 try {
-                    const response = await fetch('http://localhost:8081/api/users/profile', {
+                    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/profile`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`,

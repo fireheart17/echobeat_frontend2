@@ -12,7 +12,7 @@ const LikeButton = ({ podcast_id }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:8081/api/users/validate", {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/validate`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ const LikeButton = ({ podcast_id }) => {
       if (likedSongs.includes(podcast_id)) {
         try {
           const res = await fetch(
-            `http://localhost:8081/api/liked-podcasts/${user}/${podcast_id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/api/liked-podcasts/${user}/${podcast_id}`,
             {
               method: "DELETE",
               headers: {
@@ -58,7 +58,7 @@ const LikeButton = ({ podcast_id }) => {
         }
       } else {
         try {
-          const res = await fetch("http://localhost:8081/api/liked-podcasts", {
+          const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/liked-podcasts`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

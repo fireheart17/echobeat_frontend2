@@ -13,7 +13,7 @@ const LikeButton = ({ playlist_id }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:8081/api/users/validate", {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/validate`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ const LikeButton = ({ playlist_id }) => {
         console.log("deleting");
         try {
           const res = await fetch(
-            `http://localhost:8081/api/likedplaylists/${user}/${playlist_id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/api/likedplaylists/${user}/${playlist_id}`,
             {
               method: "DELETE",
               headers: {
@@ -60,7 +60,7 @@ const LikeButton = ({ playlist_id }) => {
         }
       } else {
         try {
-          const res = await fetch("http://localhost:8081/api/likedplaylists", {
+          const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/likedplaylists`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

@@ -19,7 +19,7 @@ const Song = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('http://localhost:8081/api/users/validate', {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/validate`, {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${Cookies.get('token')}`,
@@ -50,7 +50,7 @@ const Song = () => {
     const fetchPlaylistData = async () => {
         try {
             // Step 1: Fetch playlists for the user
-            const response = await fetch(`http://localhost:8081/api/playlists/user/${id}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/playlists/user/${id}`);
             
             if (!response.ok) {
                 throw new Error('Failed to fetch playlists data');
@@ -63,7 +63,7 @@ const Song = () => {
             const tracksWithArtists = await Promise.all(
                 playlistsData.map(async (playlist) => {
                     // Fetch user token based on user ID
-                    const response = await fetch(`http://localhost:8081/api/users/${id}`);
+                    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/${id}`);
                     
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -73,7 +73,7 @@ const Song = () => {
                     const token = tokenText || ''; // Ensure token is valid
     
                     // Fetch user profile using the token
-                    const response2 = await fetch('http://localhost:8081/api/users/profile', {
+                    const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/profile`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`,

@@ -19,7 +19,7 @@ const Song = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('http://localhost:8081/api/users/validate', {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/validate`, {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${Cookies.get('token')}`,
@@ -51,16 +51,16 @@ const Song = () => {
         const fetchPlaylistData = async () => {
             try {
                 // Step 1: Fetch tracks for the playlist
-                const response = await fetch(`http://localhost:8081/api/likedSongs/userId/${id}`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/likedSongs/userId/${id}`);
                 const tracksData = await response.json();
                 console.log(tracksData);
-                // const response1 = await fetch(`http://localhost:8081/api/playlistsTracks/playlist/${id}`);
+                // const response1 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/playlistsTracks/playlist/${id}`);
                 // const tracksDat = await response1.json();
                 // console.log(tracksDat);
                 // Step 2: For each track, fetch artist details
                 const tracksWithArtists = await Promise.all(
                     tracksData.map(async (track) => {
-                        const artistResponse = await fetch(`http://localhost:8081/api/getTrackArtists/${track.track_id}`);
+                        const artistResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/getTrackArtists/${track.track_id}`);
                         // console.log(artistResponse);
                         const artistData = await artistResponse.json();
                         console.log(artistData[0]);

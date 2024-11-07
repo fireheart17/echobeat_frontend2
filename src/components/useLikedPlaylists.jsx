@@ -6,7 +6,7 @@ export default function useLikedSongs(){
     const [likedPlaylists,setLikedPlaylists] = useState([]);
 
     const fetchLikedPlaylists=async ()=>{
-        const response = await fetch(`http://localhost:8081/api/likedPlaylistsFromToken`,
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/likedPlaylistsFromToken`,
             {
                 method:"GET",
             headers:{

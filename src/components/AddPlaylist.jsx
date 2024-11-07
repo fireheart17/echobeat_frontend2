@@ -18,7 +18,7 @@ const SearchBar = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:8081/api/users/validate", {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/validate`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ const SearchBar = (props) => {
   
         const data = {title : query, duration : 0, user_id : user}
         try {
-            const res = await fetch("http://localhost:8081/api/playlists/add/", {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/playlists/add/`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

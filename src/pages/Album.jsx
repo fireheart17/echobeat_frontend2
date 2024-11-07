@@ -18,7 +18,7 @@ const Song = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8081/api/albums/${id}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/albums/${id}`);
         const album = await response.json();
         setAlbum(album);
       } catch (error) {
@@ -33,17 +33,17 @@ const Song = () => {
     const fetchPlaylistData = async () => {
       try {
         // Step 1: Fetch tracks for the playlist
-        const response = await fetch(`http://localhost:8081/api/album/${id}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/album/${id}`);
         const tracksData = await response.json();
         console.log(tracksData);
-        // const response1 = await fetch(`http://localhost:8081/api/playlistsTracks/playlist/${id}`);
+        // const response1 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/playlistsTracks/playlist/${id}`);
         // const tracksDat = await response1.json();
         // console.log(tracksDat);
         // Step 2: For each track, fetch artist details
         const tracksWithArtists = await Promise.all(
           tracksData.map(async (track) => {
             const artistResponse = await fetch(
-              `http://localhost:8081/api/getTrackArtists/${track.track_id}`
+              `${process.env.REACT_APP_BACKEND_URL}/api/getTrackArtists/${track.track_id}`
             );
             console.log("here");
             const artistData = await artistResponse.json();

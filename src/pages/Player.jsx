@@ -21,7 +21,7 @@ export default function Player() {
 
   const incrementListenCount = async () => {
     try {
-      const response = await fetch(`http://localhost:8081/api/tracks/${id}/incrementListen`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/tracks/${id}/incrementListen`, {
         method: "PATCH", // Use PATCH for partial updates
       });
 
@@ -36,7 +36,7 @@ export default function Player() {
   };
 
   useEffect(()=>{
-    fetch(`http://localhost:8081/api/tracks/${id}`).then(res=>res.json()).then(track=>{setTrack(track)})
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/tracks/${id}`).then(res=>res.json()).then(track=>{setTrack(track)})
   },[])
 
   const handlePlay = () => {
@@ -54,7 +54,7 @@ export default function Player() {
           </div>
           <div className="track-player">
             <AudioPlayer
-              src={`http://localhost:8081/songs/track_${track.track_id}.mp3`}
+              src={`${process.env.REACT_APP_BACKEND_URL}/songs/track_${track.track_id}.mp3`}
               style={{ borderRadius: "10px",backgroundColor:"var(--color-100)" }}
               onPlay={handlePlay}
             />

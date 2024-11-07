@@ -43,7 +43,7 @@ const SearchBar = (props) => {
     console.log("track : " + track_id);
 
     try {
-      const res = await fetch('http://localhost:8081/api/playlistsTracks/add', {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/playlistsTracks/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const SearchBar = (props) => {
 
       console.log('query:', query);
 
-      const response = await fetch(`http://localhost:8081/api/tracks/search/${query}`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/tracks/search/${query}`);
       if (!response.ok) {
           throw new Error('Network response was not ok');
       }

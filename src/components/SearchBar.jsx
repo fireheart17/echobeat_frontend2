@@ -25,7 +25,7 @@ const SearchBar = () => {
   
         console.log('query:', query);
   
-        const response = await fetch(`http://localhost:8081/api/tracks/search/${query}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/tracks/search/${query}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -47,7 +47,7 @@ const SearchBar = () => {
   
         console.log('query:', query);
   
-        const response = await fetch(`http://localhost:8081/api/albums/search/${query}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/albums/search/${query}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -70,7 +70,7 @@ const SearchBar = () => {
   
         console.log('query:', query);
   
-        const response = await fetch(`http://localhost:8081/api/artists/search/${query}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/artists/search/${query}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -92,7 +92,7 @@ const SearchBar = () => {
   
         console.log('query:', query);
   
-        const response = await fetch(`http://localhost:8081/api/playlists/search/${query}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/playlists/search/${query}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -115,7 +115,7 @@ const SearchBar = () => {
   
         console.log('query:', query);
   
-        const response = await fetch(`http://localhost:8081/api/podcasts/search/${query}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/podcasts/search/${query}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

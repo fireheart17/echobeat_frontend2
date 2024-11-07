@@ -12,7 +12,7 @@ const UserProfile = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch('http://localhost:8081/api/users/profile', {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/profile`, {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${Cookies.get('token')}`,
@@ -37,7 +37,7 @@ const UserProfile = () => {
     //     const fetchUser = async () => {
     //         if (token) {
     //             try {
-    //                 const response = await fetch('http://localhost:8081/api/users/profile', {
+    //                 const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/profile`, {
     //                     method: 'GET',
     //                     headers: {
     //                         'Authorization': `Bearer ${token}`,

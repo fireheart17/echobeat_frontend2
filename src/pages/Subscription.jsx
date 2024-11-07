@@ -11,7 +11,7 @@ const Subscription = () => {
     // Fetch perks based on subscriptionId
     const fetchPerks = async (subscriptionId, setPerks) => {
         try {
-            const response = await fetch(`http://localhost:8081/api/perks/get/${subscriptionId}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/perks/get/${subscriptionId}`);
             if (response.ok) {
                 const data = await response.json();
                 setPerks(data);

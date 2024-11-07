@@ -18,7 +18,7 @@ export default function UploadTrack() {
     const data = new FormData();
     data.append("file", file);
     data.append("track_id", track_id);
-    const res = await fetch(`http://localhost:8081/api/upload`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/upload`, {
       method: "POST",
       body: data,
     });
@@ -29,7 +29,7 @@ export default function UploadTrack() {
           "block";
       return;
     }
-    const res2 = await fetch(`http://localhost:8081/api/tracks`, {
+    const res2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/tracks`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -52,7 +52,7 @@ export default function UploadTrack() {
     }
     artists.forEach(async (artist) => {
       const artist_id = parseInt(artist);
-      const res3 = await fetch(`http://localhost:8081/api/track-creators`, {
+      const res3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/track-creators`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

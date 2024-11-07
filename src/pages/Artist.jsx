@@ -15,7 +15,7 @@ const ArtistProfile = () => {
   const fetchArtist = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8081/api/artists/${artistId}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/artists/${artistId}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -37,7 +37,7 @@ const ArtistProfile = () => {
     const fetchAlbums = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8081/api/artistalbums/${artistId}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/artistalbums/${artistId}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -58,7 +58,7 @@ const ArtistProfile = () => {
     const fetchTracks = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8081/api/artisttracks/${artistId}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/artisttracks/${artistId}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

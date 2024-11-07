@@ -10,7 +10,7 @@ const [user, setUser] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('http://localhost:8081/api/users/validate', {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/validate`, {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ const [user, setUser] = useState([]);
         console.log("User : " + user);
         console.log("Track : " + track_id);
         try{
-            const res = await fetch(`http://localhost:8081/api/likedSongs/${user}/${track_id}`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/likedSongs/${user}/${track_id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

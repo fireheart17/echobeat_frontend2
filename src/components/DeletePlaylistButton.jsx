@@ -10,7 +10,7 @@ const DeletePlaylistButton = (props) => {
             console.log("Playlist : " + props.playlist_id);
             // console.log("Track : " + props.track_id);
             try {
-                const res = await fetch(`http://localhost:8081/api/playlists/${props.playlist_id}`, {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/playlists/${props.playlist_id}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',

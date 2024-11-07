@@ -8,7 +8,7 @@ const Charts = () => {
   const [charts, setCharts] = useState([]);
 
   // useEffect(() => {
-  //   fetch('http://localhost:8081/api/charts')
+  //   fetch('${process.env.REACT_APP_BACKEND_URL}/api/charts')
   //     .then((response) => response.json())
   //     .then((data) => setCharts(data))
   //     .catch((error) => console.error('Error fetching charts:', error));
@@ -17,7 +17,7 @@ const Charts = () => {
   useEffect(() => {
     const fetchChart = async () => {
       try {
-        const res = await fetch(`http://localhost:8081/api/charts/`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/charts/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json"

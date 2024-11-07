@@ -7,7 +7,6 @@ import Chart from "./pages/Chart"
 import Logout from "./pages/Logout";
 import User from "./pages/User";
 import Player from "./pages/Player";
-import SpotifyAuth from "./pages/SpotifyLogin";
 import Test from "./pages/Test";
 import Likedsongs from "./pages/Likedsongs";
 import Likedplaylists from "./pages/Likedplaylists";
@@ -76,10 +75,6 @@ export const router = createBrowserRouter([
     path: "/search",
     element: <SearchSongs />,
   },
-  // {
-  //   path: "/spotify_auth",
-  //   element: <SpotifyAuth />,
-  // },
   {
     path: "/player/:id",
     element: <Player />,

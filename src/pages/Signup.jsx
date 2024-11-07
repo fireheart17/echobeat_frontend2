@@ -26,7 +26,7 @@ const Signup = () => {
     e.preventDefault(); // Prevent default form submission behavior
 
     try {
-      const response = await fetch("http://localhost:8081/api/users", {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData), // Convert form data to JSON

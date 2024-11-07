@@ -20,7 +20,7 @@ const Playlist = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8081/api/playlists/${id}`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/playlists/${id}`);
                 const playlist = await response.json();
                 setPlaylist(playlist);
             } catch (error) {
@@ -33,7 +33,7 @@ const Playlist = () => {
     // Fetch playlist data from the API and get artist details for each track
     const fetchPlaylistData = async () => {
         try {
-            const response = await fetch(`http://localhost:8081/api/playlistsTracks/playlist/${id}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/playlistsTracks/playlist/${id}`);
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
@@ -44,7 +44,7 @@ const Playlist = () => {
             // Step 2: For each track, fetch artist details
             const tracksWithArtists = await Promise.all(
                 tracksData.map(async (track) => {
-                    const artistResponse = await fetch(`http://localhost:8081/api/getTrackArtists/${track.track_id}`);
+                    const artistResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/getTrackArtists/${track.track_id}`);
                     const artistText = await artistResponse.text();
                     const artistData = artistText ? JSON.parse(artistText) : []; // Parse JSON only if artistText is not empty
                     console.log(artistData);
