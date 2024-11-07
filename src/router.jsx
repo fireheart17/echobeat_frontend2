@@ -21,6 +21,7 @@ import Demo from "./pages/Demo";
 import Album from "./pages/Album";
 import Myplaylists from "./pages/Myplaylists";
 import Subscription from "./pages/Subscription";
+import UploadTrack from "./pages/Upload";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -54,10 +55,6 @@ export const router = createBrowserRouter([
     path: "/test/:userId",
     element: <Test />,
   },
-  // {
-  //   path: "/user/:id",
-  //   element: <User />,
-  // },
   {
     path: "/likedsongs",
     element: <Likedsongs />,
@@ -110,9 +107,12 @@ export const router = createBrowserRouter([
     path : "/subscribe",
     element : <Subscription />,
   },
-  
   {
     path: "/myplaylists",
     element: <Myplaylists/>
-  }
+  },
+  {
+    path: "/upload",
+    element: <UploadTrack />
+  },
 ]);
