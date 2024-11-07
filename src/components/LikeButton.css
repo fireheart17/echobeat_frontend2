@@ -9,4 +9,16 @@
 	color:black;
 }
 
+.like-buttonPlaylist{
+	font-size:24px;
+	font-style:normal;
+	margin-left:5px;
+	color: var(--color-400);
+}
+
+.like-buttonPlaylist:hover{
+	color:black;
+}
+
+       
        

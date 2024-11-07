@@ -7,8 +7,8 @@ const LikeButton = ({ track_id }) => {
   const [user, setUser] = useState([]);
   const [likedSongs, fetchLikedSongs] = useLikedSongs();
   const token = Cookies.get("token");
-  console.log("token form button " + token);
-  console.log("track from button " + track_id);
+  console.log("bool " + likedSongs.includes(track_id));
+  console.log("all  ", likedSongs);
   useEffect(() => {
     const fetchData = async () => {
       try {
