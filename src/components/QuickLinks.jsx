@@ -18,6 +18,8 @@ function QuickLinks() {
         <div className="dropdown-menu">
           <a href="/" className="dropdown-item">Home</a>
           <a href="/charts" className="dropdown-item">Charts</a>
+          <a href="/myplaylists" className="dropdown-item">My Playlists</a>
+          <a href="/subscribe" className="dropdown-item">Subscribe</a>
           <a href="/user" className="dropdown-item">User</a>
           <a href="/logout" className="dropdown-item">Logout</a>
         </div>

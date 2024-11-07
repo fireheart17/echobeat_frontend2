@@ -66,6 +66,18 @@ const Navbar = () => {
                 Charts
               </a>
               <a
+                href="/myplaylists"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                My Playlists
+              </a>
+              <a
+                href="/subscribe"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Subscribe
+              </a>
+              <a
                 href="/user"
                 style={{ textDecoration: "none", color: "white" }}
               >
