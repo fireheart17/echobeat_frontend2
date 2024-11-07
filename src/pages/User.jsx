@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from './../components/Navbar';
 import Cookies from "js-cookie";
 import './user_style.css';
+import CheckAuth from '../components/CheckAuth';
 
 const UserProfile = () => {
     const [user, setUser] = useState(null);
@@ -40,6 +41,7 @@ const UserProfile = () => {
 
     return (
         <div>
+            <CheckAuth />
             <div className="profile-container">
                 <div className="spacer" style={{height:'60px'}}></div>
                 <div className="profile-header">
