@@ -2,8 +2,30 @@
 
 import React, { useState, useEffect } from 'react';
 import './Subscription.css';
+import Cookies from 'js-cookie';
 
 const Subscription = () => {
+    const handleSubscriptionPurchase = async (subscriptionId) => {
+        try {
+            const response = await fetch(`http://localhost:8081/api/users/update-subscription`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${Cookies.get('token')}`
+                },
+                body: JSON.stringify({ subscription_id: subscriptionId })
+            });
+            
+            if (response.ok) {
+                alert("Subscription updated successfully!");
+            } else {
+                alert("Failed to update subscription");
+            }
+        } catch (error) {
+            console.error("Error updating subscription:", error);
+        }
+    };
+
     const [freePerks, setFreePerks] = useState([]);
     const [premiumPerks, setPremiumPerks] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -49,7 +71,7 @@ const Subscription = () => {
                             ))}
                         </ul>
                     )}
-                    <button className="buy-button" onClick={() => alert('Subscribed to Free Tier!')}>
+                    <button className="buy-button" onClick={() => handleSubscriptionPurchase(1)}>
                         Select Free Tier
                     </button>
                 </div>
@@ -66,7 +88,7 @@ const Subscription = () => {
                             ))}
                         </ul>
                     )}
-                    <button className="buy-button" onClick={() => alert('Subscribed to Premium Tier!')}>
+                    <button className="buy-button" onClick={() => handleSubscriptionPurchase(2)}>
                         Select Premium Tier
                     </button>
                 </div>
