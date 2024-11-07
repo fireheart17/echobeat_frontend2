@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import CheckAuth from "../components/CheckAuth";
 import Navbar from '../components/Navbar';
 import AddPlaylist from '../components/AddPlaylist';
+import DeletePlaylistButton from '../components/DeletePlaylistButton';
 
 const Song = () => {
     const [playlists, setPlaylists] = useState([]);
@@ -106,7 +107,7 @@ const Song = () => {
         <>
             <CheckAuth />
             <div className="playlist-container">
-            <div className="spacer" style={{height:'60px'}}></div>
+                <div className="spacer" style={{ height: '60px' }}></div>
                 <h1>My Playlists</h1>
                 <AddPlaylist fetchData={fetchPlaylistData} />
                 <div className="action-buttons">
@@ -122,20 +123,24 @@ const Song = () => {
                         <p>Loading playlists...</p>
                     ) : (
                         playlists.map((playlist, index) => (
-                            <a key={playlist.playlistId} href={`/playlist/${playlist.playlistId}`} className="song-link">
-                                <div key={playlist.playlistId} className="song-row">
-                                    <div className="song-number">{index + 1}</div>
+                            <div key={playlist.playlistId} className="song-row">
+                                <div className="song-number">{index + 1}</div>
+                                <a key={playlist.playlistId} href={`/playlist/${playlist.playlistId}`} className="song-link">
                                     <div className="song-title">
                                         <span>{playlist.playlistName}</span>
                                     </div>
-                                    <div className="song-artist">
-                                        <span>{playlist.userName}</span>
-                                    </div>
-                                    <div className="song-duration">
-                                        <span>{playlist.duration}</span>
-                                    </div>
+                                </a>
+                                <div className="song-artist">
+                                    <span>{playlist.userName}</span>
                                 </div>
-                            </a>
+                                <div className="song-duration">
+                                    <span>{playlist.duration}</span>
+                                </div>
+                                <div style={{ marginLeft: '40%' }}>
+                                    <DeletePlaylistButton playlist_id={playlist.playlistId} fetchData={fetchPlaylistData} />
+
+                                </div>
+                            </div>
                         ))
                     )}
                 </div>
