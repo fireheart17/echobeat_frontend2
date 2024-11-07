@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import './Subscription.css';
 import Cookies from 'js-cookie';
 import Navbar from '../components/Navbar';
+import CheckAuth from '../components/CheckAuth';
 
 const Subscription = () => {
     const handleSubscriptionPurchase = async (subscriptionId) => {
@@ -56,6 +57,7 @@ const Subscription = () => {
 
     return (
         <div className="subscription-container">
+            <CheckAuth />
             <div className="spacer" style={{ height: '60px' }}></div>
             <h1>Choose Your Plan</h1>
             <p>Experience the best music tailored just for you.</p>
